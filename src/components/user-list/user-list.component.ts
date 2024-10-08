@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { User } from '../../entities/User.entity';
-import { UserService } from '../../services/user.service';
-import { ProductComponent } from '../product/product.component';
+import { User } from '@entities/User.entity';
+import { UserService } from '@services/user/user.service';
+import { ProductComponent } from '@components/product/product.component';
 
 @Component({
   selector: 'app-user-list',

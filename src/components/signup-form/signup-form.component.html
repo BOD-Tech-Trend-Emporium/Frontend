@@ -1,0 +1,87 @@
+<form
+  [formGroup]="signupForm"
+  class="w-[90%] max-w-[520px] flex flex-col my-10 bg-white justify-center items-start p-8 rounded-lg border-solid border-[1px] border-gray-400 drop-shadow-lg"
+  (submit)="handleSignup()"
+>
+  <span class="text-lg font-light">Welcome !</span>
+  <h3 class="text-2xl font-medium mt-5">Sign up</h3>
+  <span class="text-base mt-2 font-normal">
+    Register to add items to your wishlist and make purchases
+  </span>
+  <div class="mt-8 flex flex-col w-full">
+    <div class="flex flex-col gap-y-2">
+      <label for="email" class="font-normal text-base">Email</label>
+      <input
+        id="email"
+        class="p-3 border-solid border-2 border-gray-400 rounded-lg"
+        type="text"
+        formControlName="email"
+        placeholder="Answer to your security question"
+      />
+    </div>
+    <div class="flex flex-col gap-y-2 mt-8">
+      <label for="password" class="font-normal text-base">Password</label>
+      <div class="relative">
+        <input
+          id="password"
+          class="w-full p-3 border-solid border-2 border-gray-400 rounded-lg"
+          [type]="this.isPasswordVisible ? 'text' : 'password'"
+          formControlName="password"
+          placeholder="Enter your password"
+        />
+        <button class="absolute top-1/4 right-8" (click)="handleShowPassword()">
+          <img [src]="this.getPasswordIcon()" alt="" />
+        </button>
+      </div>
+    </div>
+    <div class="flex flex-col gap-y-2 mt-8">
+      <label for="repeatPassword" class="font-normal text-base"
+        >Repeat Password</label
+      >
+      <div class="relative">
+        <input
+          id="repeatPassword"
+          class="w-full p-3 border-solid border-2 border-gray-400 rounded-lg"
+          [type]="this.isRepeatPasswordVisible ? 'text' : 'password'"
+          formControlName="repeatPassword"
+          placeholder="Enter your password again"
+        />
+        <button
+          class="absolute top-1/4 right-8"
+          (click)="handleShowRepeatPassword()"
+        >
+          <img [src]="this.getRepeatPasswordIcon()" alt="" />
+        </button>
+      </div>
+    </div>
+    <div class="flex flex-col gap-y-2 mt-8">
+      <label for="securityQuestion" class="font-normal text-base"
+        >Select your question</label
+      >
+      <select
+        name="securityQuestion"
+        class="p-3 border-solid border-2 border-gray-400 rounded-lg"
+        formControlName="securityQuestion"
+      >
+        <option value="1">Pet's name</option>
+      </select>
+    </div>
+    <div class="flex flex-col gap-y-2 mt-8">
+      <label for="answer" class="font-normal text-base">Your answer</label>
+      <input
+        id="answer"
+        class="p-3 border-solid border-2 border-gray-400 rounded-lg"
+        type="text"
+        formControlName="answer"
+        placeholder="Answer to your security question"
+      />
+    </div>
+    <button type="submit" class="bg-black text-white py-3 rounded-lg mt-9">
+      Sign up
+    </button>
+    <span class="mt-5 mx-auto text-gray-400 text-base font-semibold">
+      Already have an account?
+      <a routerLink="/login" class="text-black text-base"> Login</a></span
+    >
+  </div>
+</form>

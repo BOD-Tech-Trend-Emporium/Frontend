@@ -4,32 +4,46 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-login-form',
+  selector: 'app-signup-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './login-form.component.html',
-  styleUrl: './login-form.component.css',
+  templateUrl: './signup-form.component.html',
+  styleUrl: './signup-form.component.css',
 })
-export class LoginFormComponent {
+export class SignupFormComponent {
   eyeOpenIcon = 'icons/eyeOpen.svg';
   eyeClosedIcon = 'icons/eyeClosed.svg';
   isPasswordVisible = false;
-  loginForm = new FormGroup({
-    userName: new FormControl(''),
+  isRepeatPasswordVisible = false;
+  signupForm = new FormGroup({
+    email: new FormControl(''),
     password: new FormControl(''),
-    save: new FormControl(false),
+    repeatPassword: new FormControl(''),
+    securityQuestion: new FormControl(''),
+    answer: new FormControl(''),
   });
 
-  handleLogin() {
-    console.log(this.loginForm.value);
+  handleSignup() {
+    console.log(this.signupForm.value);
   }
 
   handleShowPassword() {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
 
+  handleShowRepeatPassword() {
+    this.isRepeatPasswordVisible = !this.isRepeatPasswordVisible;
+  }
+
   getPasswordIcon() {
     if (this.isPasswordVisible) {
+      return this.eyeClosedIcon;
+    }
+    return this.eyeOpenIcon;
+  }
+
+  getRepeatPasswordIcon() {
+    if (this.isRepeatPasswordVisible) {
       return this.eyeClosedIcon;
     }
     return this.eyeOpenIcon;

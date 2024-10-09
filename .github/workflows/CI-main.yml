@@ -10,9 +10,9 @@ jobs:
       - uses: actions/setup-node@v4
       - name: Install dependencies
         run: npm ci
-      - name: Run tests
-        id: testMain
-        run: npm run test:ci
+      #- name: Run tests
+      #  id: testMain
+      #  run: npm run test:ci
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:

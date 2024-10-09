@@ -21,6 +21,7 @@
     "baseUrl": "./",
     "lib": ["ES2022", "dom"],
     "paths": {
+      "@assets/*": ["src/assets/*"],
       "@pages/*": ["src/pages/*"],
       "@components/*": ["src/components/*"],
       "@entities/*": ["src/entities/*"],

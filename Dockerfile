@@ -18,6 +18,6 @@ RUN ng build --configuration=${CONFIGURATION}
 
 FROM nginx:latest
 
-COPY --from=build app/dist/fronted/browser /usr/share/nginx/html
+COPY --from=build app/dist/frontend/browser /usr/share/nginx/html
 
 EXPOSE 80

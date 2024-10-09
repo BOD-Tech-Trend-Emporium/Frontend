@@ -25,8 +25,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            oswe/tech-trend-emporium-fronted-develop:${{ github.sha }}
-            oswe/tech-trend-emporium-fronted-develop:latest
+            oswe/tech-trend-emporium-frontend-develop:${{ github.sha }}
+            oswe/tech-trend-emporium-frontend-develop:latest
           build-args: |
             CONFIGURATION=development
       - name: Send mail
@@ -50,4 +50,4 @@ jobs:
     
                 For more details, visit the https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}.
             to: ${{secrets.EMAIL_WORKERS}}
-            from: Tech-trend-emporium-fronted
+            from: Tech-trend-emporium-frontend

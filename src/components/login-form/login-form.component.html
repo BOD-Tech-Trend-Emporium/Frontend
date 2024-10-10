@@ -3,59 +3,42 @@
   class="w-[90%] max-w-[520px] flex flex-col my-10 bg-white justify-center items-start p-8 rounded-lg border-solid border-[1px] border-gray-400 drop-shadow-lg"
   (submit)="handleLogin()"
 >
+  <!-- <app-form-wrapper [formGroup]="loginForm" [onSubmit]="handleLogin"> -->
   <span class="text-lg font-light">Welcome !</span>
   <h3 class="text-2xl font-medium mt-5">Sign in to</h3>
   <span class="text-base mt-2 font-normal"
     >please enter your credentials to log in.</span
   >
-  <div class="mt-8 flex flex-col w-full">
-    <div class="flex flex-col gap-y-2">
-      <label for="userName" class="font-normal text-base">User name</label>
-      <input
-        id="userName"
-        class="p-3 border-solid border-2 border-gray-400 rounded-lg"
-        type="text"
-        formControlName="userName"
-        placeholder="Enter your user name"
-      />
-    </div>
-    <div class="flex flex-col gap-y-2 mt-8">
-      <label for="password" class="font-normal text-base">Password</label>
-      <div class="relative">
-        <input
-          id="password"
-          class="w-full p-3 border-solid border-2 border-gray-400 rounded-lg"
-          [type]="this.isPasswordVisible ? 'text' : 'password'"
-          formControlName="password"
-          placeholder="Enter your password"
-        />
-        <button class="absolute top-1/4 right-8" (click)="handleShowPassword()">
-          <img [src]="this.getPasswordIcon()" alt="" />
-        </button>
-      </div>
-    </div>
+  <div class="mt-8 flex flex-col w-full gap-y-8">
+    <app-text-field
+      [name]="'userName'"
+      [label]="'User Name'"
+      [placeholder]="'Enter your user name'"
+      [formGroup]="loginForm"
+    />
+    <app-password-field
+      [name]="'password'"
+      [label]="'Password'"
+      [placeholder]="'Enter your password'"
+      [formGroup]="loginForm"
+    />
     <div class="mt-5 flex justify-between">
-      <div class="flex justify-center items-center gap-3 text-base font-light">
-        <input
-          id="save"
-          type="checkbox"
-          formControlName="save"
-          class="accent-black rounded-none scale-125 ml-1"
-        />
-        <label for="save" class="">Remember me</label>
-      </div>
+      <app-checkbox-field
+        [name]="'save'"
+        [label]="'Remember me'"
+        [formGroup]="loginForm"
+      />
       <a
         routerLink="/signup"
         class="text-base font-light hover:underline text-gray-600 decoration-gray-600"
         >Forgot password?</a
       >
     </div>
-    <button type="submit" class="bg-black text-white py-3 rounded-lg mt-9">
-      Login
-    </button>
+    <app-primary-button value="Login" />
     <span class="mt-16 mx-auto text-gray-400 text-base font-semibold">
       Don'y have an Account?
       <a routerLink="/signup" class="text-black text-base"> Register</a></span
     >
   </div>
+  <!-- </app-form-wrapper> -->
 </form>

@@ -1,0 +1,44 @@
+<form
+  [formGroup]="loginForm"
+  class="w-[90%] max-w-[520px] flex flex-col my-10 bg-white justify-center items-start p-8 rounded-lg border-solid border-[1px] border-gray-400 drop-shadow-lg"
+  (submit)="handleLogin()"
+>
+  <!-- <app-form-wrapper [formGroup]="loginForm" [onSubmit]="handleLogin"> -->
+  <span class="text-lg font-light">Welcome !</span>
+  <h3 class="text-2xl font-medium mt-5">Sign in to</h3>
+  <span class="text-base mt-2 font-normal"
+    >please enter your credentials to log in.</span
+  >
+  <div class="mt-8 flex flex-col w-full gap-y-8">
+    <app-text-field
+      [name]="'userName'"
+      [label]="'User Name'"
+      [placeholder]="'Enter your user name'"
+      [formGroup]="loginForm"
+    />
+    <app-password-field
+      [name]="'password'"
+      [label]="'Password'"
+      [placeholder]="'Enter your password'"
+      [formGroup]="loginForm"
+    />
+    <div class="mt-5 flex justify-between">
+      <app-checkbox-field
+        [name]="'save'"
+        [label]="'Remember me'"
+        [formGroup]="loginForm"
+      />
+      <a
+        routerLink="/signup"
+        class="text-base font-light hover:underline text-gray-600 decoration-gray-600"
+        >Forgot password?</a
+      >
+    </div>
+    <app-primary-button value="Login" />
+    <span class="mt-16 mx-auto text-gray-400 text-base font-semibold">
+      Don'y have an Account?
+      <a routerLink="/signup" class="text-black text-base"> Register</a></span
+    >
+  </div>
+  <!-- </app-form-wrapper> -->
+</form>

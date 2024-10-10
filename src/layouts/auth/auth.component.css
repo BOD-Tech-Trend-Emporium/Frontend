@@ -1,0 +1,27 @@
+:host {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+@media (height <= 900px) {
+  :host {
+    height: auto;
+  }
+}
+
+@media (width <= 900px) {
+  :host {
+    padding: 0;
+  }
+
+  :host > div {
+    width: 90%;
+  }
+
+  :host > div > h1 {
+    align-self: center;
+    margin: 30px;
+  }
+}

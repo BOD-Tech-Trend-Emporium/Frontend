@@ -15,6 +15,7 @@ import { PrimaryButtonComponent } from '../primary-button/primary-button.compone
 import { AuthService } from '@services/auth/auth.service';
 import { EmailFieldComponent } from '../form-fields/email-field/email-field.component';
 import { ToastrService } from 'ngx-toastr';
+import { LoaderButtonComponent } from '../loader-button/loader-button.component';
 
 @Component({
   selector: 'app-login-form',
@@ -29,11 +30,13 @@ import { ToastrService } from 'ngx-toastr';
     FormWrapperComponent,
     PrimaryButtonComponent,
     EmailFieldComponent,
+    LoaderButtonComponent,
   ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css',
 })
 export class LoginFormComponent {
+  isLoading = false;
   authService: AuthService = inject(AuthService);
 
   loginForm = new FormGroup({
@@ -45,6 +48,7 @@ export class LoginFormComponent {
   constructor(private toastr: ToastrService) {}
 
   async handleLogin() {
+    this.isLoading = true;
     const response: any = await this.authService.loginUser(
       this.loginForm.value
     );
@@ -53,5 +57,6 @@ export class LoginFormComponent {
     } else {
       this.toastr.error(response.response.data.Message, 'Error');
     }
+    this.isLoading = false;
   }
 }

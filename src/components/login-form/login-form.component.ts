@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,12 +12,9 @@ import { PasswordFieldComponent } from '../form-fields/password-field/password-f
 import { CheckboxFieldComponent } from '../form-fields/checkbox-field/checkbox-field.component';
 import { FormWrapperComponent } from '../form-wrapper/form-wrapper.component';
 import { PrimaryButtonComponent } from '../primary-button/primary-button.component';
-import {
-  lowerCaseValidator,
-  numberValidator,
-  specialCharValidator,
-  upperCaseValidator,
-} from 'src/validators/validators';
+import { AuthService } from '@services/auth/auth.service';
+import { EmailFieldComponent } from '../form-fields/email-field/email-field.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-form',
@@ -31,18 +28,30 @@ import {
     CheckboxFieldComponent,
     FormWrapperComponent,
     PrimaryButtonComponent,
+    EmailFieldComponent,
   ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css',
 })
 export class LoginFormComponent {
+  authService: AuthService = inject(AuthService);
+
   loginForm = new FormGroup({
-    userName: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
     save: new FormControl(false),
   });
 
-  handleLogin() {
-    console.log(this.loginForm.value);
+  constructor(private toastr: ToastrService) {}
+
+  async handleLogin() {
+    const response: any = await this.authService.loginUser(
+      this.loginForm.value
+    );
+    if (response.data) {
+      this.toastr.success(`Welcome back ${response.data.userName}`);
+    } else {
+      this.toastr.error(response.response.data.Message, 'Error');
+    }
   }
 }

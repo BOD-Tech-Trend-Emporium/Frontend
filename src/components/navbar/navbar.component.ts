@@ -8,9 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  mobileMenuOpen = false;
+  isLoggedIn: boolean = true;  // You would fetch this from an authentication service
+  isShopper: boolean = true;   // Define user role based on user data
+  isEmployee: boolean = false; // Define user role based on user data
+  username: string = 'JohnDoe'; // Fetch username dynamically
 
-  toggleMobileMenu() {
-    this.mobileMenuOpen = !this.mobileMenuOpen;
+  logout() {
+    // Handle logout logic here
   }
 }

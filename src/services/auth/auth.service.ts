@@ -41,7 +41,6 @@ export class AuthService {
       answer: string | null;
     }>
   ) {
-    console.log(signupForm);
     const requestBody = {
       email: signupForm.email,
       name: signupForm.name,

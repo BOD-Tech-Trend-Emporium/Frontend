@@ -36,10 +36,6 @@ export const passwordsMatchValidator = (control: AbstractControl) => {
     return null;
   }
 
-  if (!repeatPassword.touched) {
-    return null;
-  }
-
   return password.value === repeatPassword.value
     ? null
     : { passwordsMismatch: true };

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -19,6 +19,9 @@ import {
   specialCharValidator,
   upperCaseValidator,
 } from 'src/validators/validators';
+import { AuthService } from '@services/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { LoaderButtonComponent } from '../loader-button/loader-button.component';
 
 @Component({
   selector: 'app-signup-form',
@@ -32,11 +35,15 @@ import {
     SelectFieldComponent,
     PrimaryButtonComponent,
     TextFieldComponent,
+    LoaderButtonComponent,
   ],
   templateUrl: './signup-form.component.html',
   styleUrl: './signup-form.component.css',
 })
 export class SignupFormComponent {
+  isLoading = false;
+  authService: AuthService = inject(AuthService);
+
   options = [
     { value: '1', name: "Pet's name" },
     { value: '2', name: 'Nickname' },
@@ -45,6 +52,8 @@ export class SignupFormComponent {
   signupForm = new FormGroup(
     {
       email: new FormControl('', [Validators.required, Validators.email]),
+      name: new FormControl('', [Validators.required]),
+      userName: new FormControl('', [Validators.required]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(8),
@@ -63,7 +72,19 @@ export class SignupFormComponent {
     { validators: passwordsMatchValidator }
   );
 
-  handleSignup() {
-    console.log(this.signupForm.value);
+  constructor(private toastr: ToastrService) {}
+
+  async handleSignup() {
+    this.isLoading = true;
+    const response: any = await this.authService.signupUser(
+      this.signupForm.value
+    );
+    if (response.data) {
+      this.toastr.success(`Account created successfully`);
+      this.signupForm.reset();
+    } else {
+      this.toastr.error(response.response.data.Message, 'Error');
+    }
+    this.isLoading = false;
   }
 }

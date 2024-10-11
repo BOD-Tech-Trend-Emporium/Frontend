@@ -54,6 +54,7 @@ export class LoginFormComponent {
     );
     if (response.data) {
       this.toastr.success(`Welcome back ${response.data.userName}`);
+      this.loginForm.reset();
     } else {
       this.toastr.error(response.response.data.Message, 'Error');
     }

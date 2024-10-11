@@ -1,5 +1,5 @@
-export interface User {
-  id: string;
+export interface UserEntity {
+  token: string;
   email: string;
-  username: string;
+  userName: string;
 }

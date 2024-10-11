@@ -22,6 +22,7 @@ import {
 import { AuthService } from '@services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderButtonComponent } from '../loader-button/loader-button.component';
+import { SignUpEntity } from '@entities/Signup.entity';
 
 @Component({
   selector: 'app-signup-form',
@@ -43,6 +44,7 @@ import { LoaderButtonComponent } from '../loader-button/loader-button.component'
 export class SignupFormComponent {
   isLoading = false;
   authService: AuthService = inject(AuthService);
+  toastr: ToastrService = inject(ToastrService);
 
   options = [
     { value: '1', name: "Pet's name" },
@@ -72,13 +74,17 @@ export class SignupFormComponent {
     { validators: passwordsMatchValidator }
   );
 
-  constructor(private toastr: ToastrService) {}
-
   async handleSignup() {
     this.isLoading = true;
-    const response: any = await this.authService.signupUser(
-      this.signupForm.value
-    );
+    const request: SignUpEntity = {
+      email: this.signupForm.value.email!,
+      name: this.signupForm.value.name!,
+      userName: this.signupForm.value.userName!,
+      password: this.signupForm.value.password!,
+      securityQuestion: this.signupForm.value.securityQuestion!,
+      answer: this.signupForm.value.answer!,
+    };
+    const response: any = await this.authService.signup(request);
     if (response.data) {
       this.toastr.success(`Account created successfully`);
       this.signupForm.reset();

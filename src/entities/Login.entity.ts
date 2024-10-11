@@ -1,5 +1,5 @@
-export interface Login {
-  userName: string;
+export interface LoginEntity {
+  email: string;
   password: string;
-  save: string;
+  save: boolean;
 }

@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TextFieldComponent } from '../form-fields/text-field/text-field.component';
 import { PasswordFieldComponent } from '../form-fields/password-field/password-field.component';
 import { CheckboxFieldComponent } from '../form-fields/checkbox-field/checkbox-field.component';
@@ -16,6 +16,7 @@ import { AuthService } from '@services/auth/auth.service';
 import { EmailFieldComponent } from '../form-fields/email-field/email-field.component';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderButtonComponent } from '../loader-button/loader-button.component';
+import { LoginEntity } from '@entities/Login.entity';
 
 @Component({
   selector: 'app-login-form',
@@ -38,6 +39,8 @@ import { LoaderButtonComponent } from '../loader-button/loader-button.component'
 export class LoginFormComponent {
   isLoading = false;
   authService: AuthService = inject(AuthService);
+  toastr: ToastrService = inject(ToastrService);
+  router: Router = inject(Router);
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -45,16 +48,20 @@ export class LoginFormComponent {
     save: new FormControl(false),
   });
 
-  constructor(private toastr: ToastrService) {}
-
   async handleLogin() {
     this.isLoading = true;
-    const response: any = await this.authService.loginUser(
-      this.loginForm.value
-    );
+    const request: LoginEntity = {
+      email: this.loginForm.value.email!,
+      password: this.loginForm.value.password!,
+      save: this.loginForm.value.save!,
+    };
+    const response: any = await this.authService.login(request);
     if (response.data) {
       this.toastr.success(`Welcome back ${response.data.userName}`);
       this.loginForm.reset();
+      setTimeout(() => {
+        this.router.navigate(['/']);
+      }, 1500);
     } else {
       this.toastr.error(response.response.data.Message, 'Error');
     }

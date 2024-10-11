@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { User } from '@entities/User.entity';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  protected UsersList: User[] = [];
+  protected UsersList: any[] = [];
 
   constructor() {}
 
-  getAllUsers(): User[] {
+  getAllUsers(): any[] {
     //Mock fetched data
     const data = [
       { id: '1', email: 'uno@gmail.com', username: 'uno' },

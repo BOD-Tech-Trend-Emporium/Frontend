@@ -3,10 +3,16 @@ import { DashboardComponent } from '@pages/dashboard/dashboard.component';
 import { HomeComponent } from '@pages/home/home.component';
 import { LoginComponent } from '@pages/login/login.component';
 import { SignupComponent } from '@pages/signup/signup.component';
+import { AuthGuard } from 'src/guards/auth.guard';
+import { NoAuthGuard } from 'src/guards/no-auth.guard';
 
 export const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
+  { path: 'signup', component: SignupComponent, canActivate: [NoAuthGuard] },
 ];

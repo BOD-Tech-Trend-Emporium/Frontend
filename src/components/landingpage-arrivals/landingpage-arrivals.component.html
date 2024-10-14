@@ -1,0 +1,9 @@
+<h1 class="text-4xl font-bold text-center mb-4 mt-24">Our latest arrivals</h1>
+<div class="flex justify-center w-full gap-5">
+    @for (product of latestProducts; track $index) {
+        <div>
+            <app-carousel-imagen [src]="product.image" [figcaption]="product.title" [alt]="product.description"></app-carousel-imagen>
+            <p class="text-center">{{product.price | currency}}</p>  
+        </div>
+    }
+</div>

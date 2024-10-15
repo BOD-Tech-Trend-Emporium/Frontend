@@ -1,0 +1,9 @@
+<div class="flex justify-center h-[25rem] w-full items-center">
+    <div class="relative h-[25rem] w-[73rem]">
+        <app-round-button (buttonFunction)="getBefore()" value="&lt;" class="absolute left-5 top-1/2"></app-round-button>
+        <div class="w-full h-full">
+            <img class="w-full h-full object-fill" src="{{getCurrent()}}" >
+        </div>
+         <app-round-button (buttonFunction)="getNext()" value=">" class="absolute right-5 top-1/2"></app-round-button>
+    </div>
+</div>

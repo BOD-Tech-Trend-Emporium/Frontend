@@ -1,14 +1,15 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { CarouselImagenComponent } from '@components/carousel-imagen/carousel-imagen.component';
+import { BasicImagenComponent } from '@components/basic-imagen/basic-imagen.component';
 import { ProductDto } from '@entities/Product.entity';
 import { ProductService } from '@services/product/product.service';
 import { WhiteButtonComponent } from "../white-button/white-button.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-landingpage-best-selling-products',
   standalone: true,
-  imports: [CurrencyPipe, CarouselImagenComponent, WhiteButtonComponent],
+  imports: [CurrencyPipe, BasicImagenComponent, WhiteButtonComponent, RouterLink],
   templateUrl: './landingpage-best-selling-products.component.html',
   styleUrl: './landingpage-best-selling-products.component.css'
 })
@@ -24,7 +25,10 @@ export class LandingpageBestSellingProductsComponent implements OnInit{
         this.isLoading = false;
 
       },
-      error: (error: any)=>{}
+      error: (error: any)=>{
+        this.isLoading = false;
+        //console.log(error);
+      }
     });
   }
 

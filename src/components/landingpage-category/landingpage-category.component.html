@@ -19,7 +19,7 @@
     <div class="flex justify-center w-full gap-5">
         @for (category of categoriesWithMostProducts; track $index) {
             <div>
-                <app-carousel-imagen src="https://th.bing.com/th/id/OIP.cq2F1ltSo2frtm9UZqhVawHaDt?rs=1&pid=ImgDetMain" [figcaption]="category.name" [alt]="category.name"></app-carousel-imagen>
+                <app-basic-imagen [routerLink]="['/']" src="https://th.bing.com/th/id/OIP.cq2F1ltSo2frtm9UZqhVawHaDt?rs=1&pid=ImgDetMain" [figcaption]="category.name" [alt]="category.name"></app-basic-imagen>
             </div>
         }
     </div>

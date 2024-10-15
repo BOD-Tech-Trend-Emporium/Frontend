@@ -1,14 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ProductDto } from '@entities/Product.entity';
 import { ProductService } from '@services/product/product.service';
-import { CarouselImagenComponent } from "../carousel-imagen/carousel-imagen.component";
+import { BasicImagenComponent } from "../basic-imagen/basic-imagen.component";
 import { CurrencyPipe } from '@angular/common';
 import { WhiteButtonComponent } from "../white-button/white-button.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-landingpage-arrivals',
   standalone: true,
-  imports: [CarouselImagenComponent, CurrencyPipe, WhiteButtonComponent],
+  imports: [BasicImagenComponent, CurrencyPipe, WhiteButtonComponent, RouterLink],
   templateUrl: './landingpage-arrivals.component.html',
   styleUrl: './landingpage-arrivals.component.css'
 })
@@ -23,7 +24,9 @@ export class LandingpageArrivalsComponent implements OnInit{
         this.latestProducts = products;
         this.isLoading = false;
       },
-      error: (error: any)=>{}
+      error: (error: any)=>{
+        this.isLoading = false;
+      }
     });
   }
 

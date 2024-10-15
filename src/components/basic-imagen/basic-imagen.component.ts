@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-carousel-imagen',
+  selector: 'app-basic-imagen',
   standalone: true,
   imports: [],
-  templateUrl: './carousel-imagen.component.html',
-  styleUrl: './carousel-imagen.component.css'
+  templateUrl: './basic-imagen.component.html',
+  styleUrl: './basic-imagen.component.css'
 })
-export class CarouselImagenComponent {
+export class BasicImagenComponent {
   @Input() src?:string;
   @Input() alt?:string;
   @Input() figcaption?: string;

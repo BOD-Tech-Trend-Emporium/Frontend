@@ -1,8 +1,26 @@
 <h1 class="text-4xl font-bold text-center mb-4 mt-24">Categories</h1>
-<div class="flex justify-center w-full gap-5">
-    @for (category of categoriesWithMostProducts; track $index) {
-        <div>
-            <app-carousel-imagen src="https://th.bing.com/th/id/OIP.cq2F1ltSo2frtm9UZqhVawHaDt?rs=1&pid=ImgDetMain" [figcaption]="category.name" [alt]="category.name"></app-carousel-imagen>
-        </div>
-    }
-</div>
+<p class="text-center mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed to <br> eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<app-white-button value="Show All" componentUrl="/" class="flex justify-center mb-8"></app-white-button>
+
+@if (isLoading) {
+    <div class="animate-pulse flex justify-center space-x-4">
+        @for (item of [0,1,2]; track $index) {
+            <div class="grid grid-rows-5 place-items-center w-80 h-72 mb-6 border border-gray-500">
+                <div class ="w-64 h-3 mt-6 mb-6 bg-slate-200 rounded-full"></div>
+                <div class ="w-64 h-3 mt-6 mb-6 bg-slate-200 rounded-full"></div>
+                <div class ="w-64 h-3 mt-6 mb-6 bg-slate-200 rounded-full"></div>
+                <div class ="w-64 h-3 mt-6 mb-6 bg-slate-200 rounded-full"></div>
+                <div class ="w-64 h-3 mt-6 mb-6 bg-slate-200 rounded-full"></div>
+            </div>
+        }
+    </div>
+}
+@else {
+    <div class="flex justify-center w-full gap-5">
+        @for (category of categoriesWithMostProducts; track $index) {
+            <div>
+                <app-carousel-imagen src="https://th.bing.com/th/id/OIP.cq2F1ltSo2frtm9UZqhVawHaDt?rs=1&pid=ImgDetMain" [figcaption]="category.name" [alt]="category.name"></app-carousel-imagen>
+            </div>
+        }
+    </div>
+}

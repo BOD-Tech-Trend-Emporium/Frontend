@@ -10,7 +10,7 @@ import { UserEntity } from '@entities/User.entity';
   providedIn: 'root',
 })
 export class AuthService {
-  private userToken = new BehaviorSubject<UserEntity | null>(null);
+  private userData = new BehaviorSubject<UserEntity | null>(null);
   private loginUrl = `${environment.apiUrl}/login`;
   private signUpUrl = `${environment.apiUrl}/auth`;
 
@@ -19,9 +19,9 @@ export class AuthService {
   async login(request: LoginEntity) {
     try {
       const response = await axios.post(this.loginUrl, request);
-      this.userToken.next(response.data);
+      this.userData.next(response.data);
       if (request.save) {
-        localStorage.setItem('userToken', JSON.stringify(response.data));
+        localStorage.setItem('userData', JSON.stringify(response.data));
       }
       return response;
     } catch (error) {
@@ -39,18 +39,18 @@ export class AuthService {
   }
 
   async logout() {
-    localStorage.removeItem('userToken');
-    this.userToken.next(null);
+    localStorage.removeItem('userData');
+    this.userData.next(null);
   }
 
   getUserToken() {
-    return this.userToken.asObservable();
+    return this.userData.asObservable();
   }
 
   loadUserTokenFromStorage() {
-    const storedUser = localStorage.getItem('userToken');
+    const storedUser = localStorage.getItem('userData');
     if (storedUser) {
-      this.userToken.next(JSON.parse(storedUser));
+      this.userData.next(JSON.parse(storedUser));
     }
   }
 }

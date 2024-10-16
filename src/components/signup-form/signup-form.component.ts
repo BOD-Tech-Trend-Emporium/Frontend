@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 import { PasswordFieldComponent } from '../form-fields/password-field/password-field.component';
 import { EmailFieldComponent } from '../form-fields/email-field/email-field.component';
 import { SelectFieldComponent } from '../form-fields/select-field/select-field.component';
-import { PrimaryButtonComponent } from '../primary-button/primary-button.component';
+import { PrimaryButtonComponent } from '../buttons/primary-button/primary-button.component';
 import { TextFieldComponent } from '../form-fields/text-field/text-field.component';
 import {
   lowerCaseValidator,
@@ -21,7 +21,7 @@ import {
 } from 'src/validators/validators';
 import { AuthService } from '@services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { LoaderButtonComponent } from '../loader-button/loader-button.component';
+import { LoaderButtonComponent } from '../buttons/loader-button/loader-button.component';
 import { SignUpEntity } from '@entities/Signup.entity';
 
 @Component({

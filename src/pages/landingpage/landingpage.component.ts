@@ -4,11 +4,12 @@ import { LandingpageArrivalsComponent } from "../../components/landingpage-arriv
 import { LandingpageBestSellingProductsComponent } from "../../components/landingpage-best-selling-products/landingpage-best-selling-products.component";
 import { LandingpageCategoryComponent } from "../../components/landingpage-category/landingpage-category.component";
 import { CarouselComponent } from '@components/carousel/carousel.component';
+import { FooterComponent } from '@components/footer/footer.component';
 
 @Component({
   selector: 'app-landingpage',
   standalone: true,
-  imports: [LandingpageArrivalsComponent, CurrencyPipe, LandingpageBestSellingProductsComponent, LandingpageCategoryComponent, CarouselComponent],
+  imports: [LandingpageArrivalsComponent, CurrencyPipe, LandingpageBestSellingProductsComponent, LandingpageCategoryComponent, CarouselComponent, FooterComponent],
   templateUrl: './landingpage.component.html',
   styleUrl: './landingpage.component.css'
 })

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from '@pages/dashboard/dashboard.component';
 import { HomeComponent } from '@pages/home/home.component';
+import { LandingpageComponent } from '@pages/landingpage/landingpage.component';
 import { LoginComponent } from '@pages/login/login.component';
 import { ProductsListComponent } from '@pages/products-list/products-list.component';
 import { SignupComponent } from '@pages/signup/signup.component';
@@ -19,4 +20,5 @@ export const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [NoAuthGuard] },
   { path: 'products-list', component: ProductsListComponent },
   { path: 'users-list', component: UsersListComponent },
+  { path: 'landingpage', component: LandingpageComponent },
 ];

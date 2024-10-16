@@ -1,0 +1,7 @@
+<form
+  [formGroup]="this.formGroup"
+  class="w-[90%] max-w-[520px] flex flex-col my-10 bg-white justify-center items-start p-8 rounded-lg border-solid border-[1px] border-gray-400 drop-shadow-lg"
+  (submit)="onSubmit()"
+>
+  <ng-content />
+</form>

@@ -1,0 +1,11 @@
+:host {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (width <= 900px) {
+  :host {
+    justify-content: center;
+  }
+}

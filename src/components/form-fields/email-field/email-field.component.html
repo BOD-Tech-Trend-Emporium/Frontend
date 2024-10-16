@@ -1,0 +1,20 @@
+<div class="flex flex-col gap-y-2" [formGroup]="this.formGroup">
+  <div class="flex justify-between">
+    <label [for]="this.name" class="font-normal text-base">{{
+      this.label
+    }}</label>
+    <div
+      *ngIf="control?.invalid && control?.touched && errorMessage"
+      class="text-sm text-red-500"
+    >
+      {{ errorMessage }}
+    </div>
+  </div>
+  <input
+    [id]="this.name"
+    class="p-3 border-solid border-2 border-gray-400 rounded-lg"
+    type="email"
+    [formControlName]="this.name"
+    [placeholder]="this.placeholder"
+  />
+</div>

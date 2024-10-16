@@ -1,0 +1,10 @@
+<div class="w-[90%] xl:w-[75%] m-auto py-14 flex flex-col gap-14">
+  <h2 class="text-3xl font-bold">Users List</h2>
+  @if (isLoading) {
+  <div class="h-[65vh] w-full flex justify-center items-center">
+    <app-loader />
+  </div>
+  } @else {
+  <app-custom-table [rows]="rows" [items]="usersList" />
+  }
+</div>

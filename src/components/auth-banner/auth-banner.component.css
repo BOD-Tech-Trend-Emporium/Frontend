@@ -1,0 +1,10 @@
+:host {
+  width: 50%;
+  max-width: 960px;
+}
+
+@media (width <= 900px) {
+  :host {
+    display: none;
+  }
+}

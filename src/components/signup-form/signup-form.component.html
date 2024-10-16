@@ -16,6 +16,20 @@
       [formGroup]="signupForm"
       [control]="this.signupForm.get('email')"
     />
+    <app-text-field
+      [name]="'name'"
+      [label]="'Name'"
+      [placeholder]="'Enter your name'"
+      [formGroup]="signupForm"
+      [control]="this.signupForm.get('name')"
+    />
+    <app-text-field
+      [name]="'userName'"
+      [label]="'UserName'"
+      [placeholder]="'Enter your user name'"
+      [formGroup]="signupForm"
+      [control]="this.signupForm.get('userName')"
+    />
     <app-password-field
       [name]="'password'"
       [label]="'Password'"
@@ -44,7 +58,11 @@
       [formGroup]="signupForm"
       [control]="this.signupForm.get('answer')"
     />
+    @if (isLoading) {
+    <app-loader-button />
+    } @else {
     <app-primary-button value="Sign up" [disabled]="signupForm.invalid" />
+    }
     <span class="mt-5 mx-auto text-gray-400 text-base font-semibold">
       Already have an account?
       <a routerLink="/login" class="text-black text-base"> Login</a></span

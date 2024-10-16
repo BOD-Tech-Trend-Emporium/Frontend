@@ -4,13 +4,13 @@ import axios from 'axios';
 import { environment } from '@environments/environment.local';
 import { SignUpEntity } from '@entities/Signup.entity';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { UserEntity } from '@entities/User.entity';
+import { UserDataEntity } from '@entities/UserData.entity';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private userData = new BehaviorSubject<UserEntity | null>(null);
+  private userData = new BehaviorSubject<UserDataEntity | null>(null);
   private loginUrl = `${environment.apiUrl}/login`;
   private signUpUrl = `${environment.apiUrl}/auth`;
 
@@ -43,7 +43,7 @@ export class AuthService {
     this.userData.next(null);
   }
 
-  getUserToken() {
+  getUserData() {
     return this.userData.asObservable();
   }
 

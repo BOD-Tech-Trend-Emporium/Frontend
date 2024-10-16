@@ -1,21 +1,40 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { UserEntity } from '@entities/User.entity';
+import { UserDataEntity } from '@entities/UserData.entity';
+import { environment } from '@environments/environment.local';
+import { AuthService } from '@services/auth/auth.service';
+import axios, { AxiosError } from 'axios';
+import { take, takeUntil } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  protected UsersList: any[] = [];
+  private userData: UserDataEntity | null = null;
+  private authService: AuthService = inject(AuthService);
+  private usersEndpoint = `${environment.apiUrl}/user`;
 
-  constructor() {}
+  constructor() {
+    this.authService
+      .getUserData()
+      .pipe(take(1))
+      .subscribe((data) => {
+        this.userData = data;
+      });
+  }
 
-  getAllUsers(): any[] {
-    //Mock fetched data
-    const data = [
-      { id: '1', email: 'uno@gmail.com', username: 'uno' },
-      { id: '2', email: 'dos@gmail.com', username: 'dos' },
-    ];
+  getUserData() {}
 
-    this.UsersList = data;
-    return this.UsersList;
+  async getAll(): Promise<UserEntity[] | AxiosError> {
+    try {
+      const response = await axios.get(this.usersEndpoint, {
+        headers: {
+          Authorization: `Bearer ${this.userData?.token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return error as AxiosError;
+    }
   }
 }

@@ -1,5 +1,8 @@
 export interface UserEntity {
-  token: string;
+  id: string;
+  name: string;
   email: string;
   userName: string;
+  role: string;
+  createdAt: string;
 }

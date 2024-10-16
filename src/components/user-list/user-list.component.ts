@@ -11,9 +11,6 @@ import { ProductComponent } from '@components/product/product.component';
 })
 export class UserListComponent {
   users: any = [];
-  userService: UserService = inject(UserService);
 
-  constructor() {
-    this.users = this.userService.getAllUsers();
-  }
+  constructor() {}
 }

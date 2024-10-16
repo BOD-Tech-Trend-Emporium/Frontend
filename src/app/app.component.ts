@@ -15,6 +15,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.authService.loadUserTokenFromStorage();
-    this.authService.getUserToken().subscribe();
+    this.authService.getUserData().subscribe();
   }
 }

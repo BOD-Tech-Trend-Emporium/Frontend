@@ -11,7 +11,7 @@ export class NoAuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): Observable<boolean> {
-    return this.authService.getUserToken().pipe(
+    return this.authService.getUserData().pipe(
       map((userData) => !userData),
       tap((isNotAuthenticated) => {
         if (!isNotAuthenticated) {

@@ -77,8 +77,11 @@ export class ProductsListComponent {
   }
 
   async deleteProduct(val: string) {
-    console.log(JSON.parse(val));
-    console.log(this.closeModal);
+    const productToDelete = JSON.parse(val);
+    this.toastr.success('Product deleted');
+    this.productsList = this.productsList.filter(
+      (i) => i.id !== productToDelete.id
+    );
     this.closeModal();
   }
 

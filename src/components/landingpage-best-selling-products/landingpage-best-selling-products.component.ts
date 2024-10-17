@@ -5,6 +5,7 @@ import { ProductEntity } from '@entities/Product.entity';
 import { ProductService } from '@services/product/product.service';
 import { WhiteButtonComponent } from '../white-button/white-button.component';
 import { RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-landingpage-best-selling-products',
@@ -21,6 +22,8 @@ import { RouterLink } from '@angular/router';
 export class LandingpageBestSellingProductsComponent implements OnInit {
   private productService: ProductService = inject(ProductService);
   bestSellingProducts: ProductEntity[] = [];
+  toastr: ToastrService = inject(ToastrService);
+
   isLoading = true;
   ngOnInit(): void {
     this.productService.getBestSellingProducts().subscribe({
@@ -29,8 +32,8 @@ export class LandingpageBestSellingProductsComponent implements OnInit {
         this.isLoading = false;
       },
       error: (error: any) => {
+        this.toastr.error('Connection error when fetching best selling products');
         this.isLoading = false;
-        //console.log(error);
       },
     });
   }

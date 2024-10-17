@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LandingpageCategoryComponent implements OnInit{
   private categoryService: CategoryService = inject(CategoryService);
+  
   categoriesWithMostProducts: CategoryDto[]=[];
   isLoading = true;
   toastr: ToastrService = inject(ToastrService);

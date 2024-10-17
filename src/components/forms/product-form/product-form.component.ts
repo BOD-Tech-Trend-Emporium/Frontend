@@ -77,7 +77,6 @@ export class ProductFormComponent {
     };
     const response: string | AxiosError =
       await this.productService.createProduct(requestBody);
-    console.log(response);
     if (typeof response === 'object') {
       this.toastr.error(response.message, 'Error');
     } else {

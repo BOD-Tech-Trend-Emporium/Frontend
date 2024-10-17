@@ -8,6 +8,7 @@ import { AxiosError } from 'axios';
 import { ModalComponent } from '@components/modal/modal.component';
 import { ActionButtonComponent } from '../../components/buttons/action-button/action-button.component';
 import { SignupFormComponent } from '../../components/signup-form/signup-form.component';
+import { ProductFormComponent } from '../../components/product-form/product-form.component';
 
 @Component({
   selector: 'app-products-list',
@@ -18,6 +19,7 @@ import { SignupFormComponent } from '../../components/signup-form/signup-form.co
     ModalComponent,
     ActionButtonComponent,
     SignupFormComponent,
+    ProductFormComponent,
   ],
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.css',

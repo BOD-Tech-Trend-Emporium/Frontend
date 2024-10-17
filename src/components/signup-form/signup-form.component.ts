@@ -23,6 +23,7 @@ import { AuthService } from '@services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderButtonComponent } from '../buttons/loader-button/loader-button.component';
 import { SignUpEntity } from '@entities/Signup.entity';
+import { FormWrapperComponent } from '../form-wrapper/form-wrapper.component';
 
 @Component({
   selector: 'app-signup-form',
@@ -37,6 +38,7 @@ import { SignUpEntity } from '@entities/Signup.entity';
     PrimaryButtonComponent,
     TextFieldComponent,
     LoaderButtonComponent,
+    FormWrapperComponent,
   ],
   templateUrl: './signup-form.component.html',
   styleUrl: './signup-form.component.css',
@@ -74,20 +76,20 @@ export class SignupFormComponent {
     { validators: passwordsMatchValidator }
   );
 
-  async handleSignup() {
+  async handleSignup(event: FormGroup) {
     this.isLoading = true;
     const request: SignUpEntity = {
-      email: this.signupForm.value.email!,
-      name: this.signupForm.value.name!,
-      userName: this.signupForm.value.userName!,
-      password: this.signupForm.value.password!,
-      securityQuestion: this.signupForm.value.securityQuestion!,
-      answer: this.signupForm.value.answer!,
+      email: event.value.email!,
+      name: event.value.name!,
+      userName: event.value.userName!,
+      password: event.value.password!,
+      securityQuestion: event.value.securityQuestion!,
+      answer: event.value.answer!,
     };
     const response: any = await this.authService.signup(request);
     if (response.data) {
       this.toastr.success(`Account created successfully`);
-      this.signupForm.reset();
+      event.reset();
     } else {
       this.toastr.error(response.response.data.Message, 'Error');
     }

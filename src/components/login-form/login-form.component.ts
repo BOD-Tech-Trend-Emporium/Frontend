@@ -48,17 +48,17 @@ export class LoginFormComponent {
     save: new FormControl(false),
   });
 
-  async handleLogin() {
+  async handleLogin(event: FormGroup) {
     this.isLoading = true;
     const request: LoginEntity = {
-      email: this.loginForm.value.email!,
-      password: this.loginForm.value.password!,
-      save: this.loginForm.value.save!,
+      email: event.value.email!,
+      password: event.value.password!,
+      save: event.value.save!,
     };
     const response: any = await this.authService.login(request);
     if (response.data) {
       this.toastr.success(`Welcome back ${response.data.userName}`);
-      this.loginForm.reset();
+      event.reset();
       setTimeout(() => {
         this.router.navigate(['/']);
       }, 1500);

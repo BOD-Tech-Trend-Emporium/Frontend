@@ -23,8 +23,6 @@ export class UserService {
       });
   }
 
-  getUserData() {}
-
   async getAll(): Promise<UserEntity[] | AxiosError> {
     try {
       const response = await axios.get(this.usersEndpoint, {

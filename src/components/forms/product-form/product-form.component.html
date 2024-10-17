@@ -1,4 +1,7 @@
-<app-form-wrapper [formGroup]="productForm" (onSubmit)="handleCreate($event)">
+<app-form-wrapper
+  [formGroup]="productForm"
+  (onSubmit)="handleActionButton($event)"
+>
   <h3 class="font-bold mb-3 text-xl">Create Product</h3>
   <div class="mt-8 flex flex-col w-full gap-y-8">
     <app-text-field
@@ -43,6 +46,9 @@
       [formGroup]="productForm"
       [control]="this.productForm.get('inventory')"
     />
-    <app-primary-button value="Add" [disabled]="this.productForm.invalid" />
+    <app-primary-button
+      [value]="this.productData ? 'Save' : 'Add'"
+      [disabled]="this.productForm.invalid"
+    />
   </div>
 </app-form-wrapper>

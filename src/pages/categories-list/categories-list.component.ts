@@ -7,7 +7,7 @@ import { CustomTableComponent } from '../../components/custom-table/custom-table
 import { AxiosError } from 'axios';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { ActionButtonComponent } from '../../components/buttons/action-button/action-button.component';
-import { SignupFormComponent } from '../../components/signup-form/signup-form.component';
+import { SignupFormComponent } from '../../components/forms/signup-form/signup-form.component';
 
 @Component({
   selector: 'app-categories-list',
@@ -25,7 +25,7 @@ import { SignupFormComponent } from '../../components/signup-form/signup-form.co
 export class CategoriesListComponent {
   isLoading: boolean = false;
   isModalActive: boolean = false;
-  selectedCategory: { value: string; type: string } | null = null;
+  selectedCategory: { value: CategoryEntity; type: string } | null = null;
   categoriesService: CategoryService = inject(CategoryService);
   toastr: ToastrService = inject(ToastrService);
   rows = ['ID', 'NAME'];

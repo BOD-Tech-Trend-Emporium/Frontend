@@ -20,7 +20,7 @@
           <app-action-button
             value="Edit"
             [type]="'Edit'"
-            [data]="item.id"
+            [data]="item"
             (clicked)="handleOptionClick($event, 'edit')"
           />
         </div>
@@ -29,7 +29,7 @@
           <app-action-button
             value="Delete"
             [type]="'delete'"
-            [data]="item.id"
+            [data]="item"
             (clicked)="handleOptionClick($event, 'delete')"
           />
         </div>

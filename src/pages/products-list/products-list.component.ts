@@ -7,8 +7,8 @@ import { ProductEntity } from '@entities/Product.entity';
 import { AxiosError } from 'axios';
 import { ModalComponent } from '@components/modal/modal.component';
 import { ActionButtonComponent } from '../../components/buttons/action-button/action-button.component';
-import { SignupFormComponent } from '../../components/signup-form/signup-form.component';
-import { ProductFormComponent } from '../../components/product-form/product-form.component';
+import { SignupFormComponent } from '../../components/forms/signup-form/signup-form.component';
+import { ProductFormComponent } from '../../components/forms/product-form/product-form.component';
 
 @Component({
   selector: 'app-products-list',
@@ -27,23 +27,41 @@ import { ProductFormComponent } from '../../components/product-form/product-form
 export class ProductsListComponent {
   isLoading = true;
   isModalActive = false;
-  selectedProduct: { value: string; type: string } | null = null;
+  selectedProduct: { value: ProductEntity; type: string } | null = null;
   productService: ProductService = inject(ProductService);
   toastr: ToastrService = inject(ToastrService);
-  rows = ['ID', 'NAME', 'CATEGORY', 'PRICE', 'DESCRIPTION', 'INVENTORY'];
+  rows = [
+    'ID',
+    'NAME',
+    'IMAGE',
+    'CATEGORY',
+    'PRICE',
+    'DESCRIPTION',
+    'INVENTORY',
+  ];
   productsList: Partial<ProductEntity>[] = [];
+
+  ngOnInit() {
+    this.getProductsList();
+  }
 
   transformProducts(products: ProductEntity[]) {
     return products.map((i) => {
       return {
         id: i.id,
         name: i.title,
+        image: i.image,
         category: i.category,
         price: i.price,
         description: i.description,
         inventory: i.stock,
       };
     });
+  }
+
+  closeModal() {
+    this.isModalActive = false;
+    this.selectedProduct = null;
   }
 
   async getProductsList() {
@@ -59,21 +77,18 @@ export class ProductsListComponent {
   }
 
   async deleteProduct(val: string) {
-    console.log(`deleted ${val}`);
+    console.log(JSON.parse(val));
+    console.log(this.closeModal);
     this.closeModal();
   }
+
+  editProduct = async () => {
+    this.closeModal();
+    this.getProductsList();
+  };
 
   handleOptionClick(event: any) {
     this.isModalActive = true;
     this.selectedProduct = event;
-  }
-
-  closeModal() {
-    this.isModalActive = false;
-    this.selectedProduct = null;
-  }
-
-  ngOnInit() {
-    this.getProductsList();
   }
 }

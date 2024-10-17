@@ -17,11 +17,11 @@ export enum ButtonTypes {
 export class ActionButtonComponent {
   @Input() type: string = ButtonTypes.default;
   @Input() value: string = '';
-  @Input() data: string = '';
+  @Input() data: object = {};
   @Output() clicked = new EventEmitter<string>();
 
   handleClick() {
-    this.clicked.emit(this.data);
+    this.clicked.emit(JSON.stringify(this.data));
   }
 
   getButtonColors() {

@@ -10,13 +10,13 @@ import { Router, RouterLink } from '@angular/router';
 import { TextFieldComponent } from '../form-fields/text-field/text-field.component';
 import { PasswordFieldComponent } from '../form-fields/password-field/password-field.component';
 import { CheckboxFieldComponent } from '../form-fields/checkbox-field/checkbox-field.component';
-import { FormWrapperComponent } from '../form-wrapper/form-wrapper.component';
-import { PrimaryButtonComponent } from '../buttons/primary-button/primary-button.component';
+import { PrimaryButtonComponent } from '../../buttons/primary-button/primary-button.component';
 import { AuthService } from '@services/auth/auth.service';
 import { EmailFieldComponent } from '../form-fields/email-field/email-field.component';
 import { ToastrService } from 'ngx-toastr';
-import { LoaderButtonComponent } from '../buttons/loader-button/loader-button.component';
+import { LoaderButtonComponent } from '../../buttons/loader-button/loader-button.component';
 import { LoginEntity } from '@entities/Login.entity';
+import { FormWrapperComponent } from '../form-wrapper/form-wrapper.component';
 
 @Component({
   selector: 'app-login-form',

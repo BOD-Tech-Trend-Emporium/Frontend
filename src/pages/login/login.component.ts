@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginFormComponent } from '../../components/login-form/login-form.component';
+import { LoginFormComponent } from '../../components/forms/login-form/login-form.component';
 import { AuthBannerComponent } from '../../components/auth-banner/auth-banner.component';
 import { AuthComponent } from '../../layouts/auth/auth.component';
 

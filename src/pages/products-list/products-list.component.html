@@ -34,7 +34,10 @@
       <div class="flex justify-end bg-white py-3 px-6 rounded-md">
         <button (click)="closeModal()">X</button>
       </div>
-      <app-product-form />
+      <app-product-form
+        [productData]="selectedProduct?.value"
+        [onFinish]="editProduct"
+      />
     </div>
     }
   </app-modal>

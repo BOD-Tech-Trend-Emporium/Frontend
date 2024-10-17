@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Form, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { PrimaryButtonComponent } from '../buttons/primary-button/primary-button.component';
+import { PrimaryButtonComponent } from '../../buttons/primary-button/primary-button.component';
 
 @Component({
   selector: 'app-form-wrapper',

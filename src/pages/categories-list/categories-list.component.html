@@ -5,6 +5,37 @@
     <app-loader />
   </div>
   } @else {
-  <app-custom-table [rows]="rows" [items]="categoriesList" />
+  <app-custom-table
+    [rows]="rows"
+    [items]="categoriesList"
+    [edit]="true"
+    [delete]="true"
+    (optionClicked)="handleOptionClick($event)"
+  />
   }
+  <app-modal [isActive]="this.isModalActive">
+    @if(this.selectedCategory && this.selectedCategory.type === "delete"){
+    <div
+      class="h-52 bg-white rounded-lg flex flex-col gap-4 justify-between items-center px-8 py-5"
+    >
+      <div class="w-full flex justify-end">
+        <button (click)="closeModal()">X</button>
+      </div>
+      <p class="font-bold">Are you sure to delete this category?</p>
+      <app-action-button
+        value="Delete"
+        [data]="this.selectedCategory.value"
+        [type]="'delete'"
+        (clicked)="deleteProduct($event)"
+      />
+    </div>
+    } @else{
+    <div class="m-auto">
+      <div class="w-full flex justify-end">
+        <button (click)="closeModal()">X</button>
+      </div>
+      <app-signup-form />
+    </div>
+    }
+  </app-modal>
 </div>

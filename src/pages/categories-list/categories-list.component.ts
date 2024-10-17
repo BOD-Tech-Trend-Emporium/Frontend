@@ -5,16 +5,27 @@ import { ToastrService } from 'ngx-toastr';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { CustomTableComponent } from '../../components/custom-table/custom-table.component';
 import { AxiosError } from 'axios';
+import { ModalComponent } from '../../components/modal/modal.component';
+import { ActionButtonComponent } from '../../components/buttons/action-button/action-button.component';
+import { SignupFormComponent } from '../../components/signup-form/signup-form.component';
 
 @Component({
   selector: 'app-categories-list',
   standalone: true,
-  imports: [LoaderComponent, CustomTableComponent],
+  imports: [
+    LoaderComponent,
+    CustomTableComponent,
+    ModalComponent,
+    ActionButtonComponent,
+    SignupFormComponent,
+  ],
   templateUrl: './categories-list.component.html',
   styleUrl: './categories-list.component.css',
 })
 export class CategoriesListComponent {
   isLoading: boolean = false;
+  isModalActive: boolean = false;
+  selectedCategory: { value: string; type: string } | null = null;
   categoriesService: CategoryService = inject(CategoryService);
   toastr: ToastrService = inject(ToastrService);
   rows = ['ID', 'NAME'];
@@ -39,6 +50,21 @@ export class CategoriesListComponent {
       this.categoriesList = transformedProducts;
     }
     this.isLoading = false;
+  }
+
+  async deleteProduct(val: string) {
+    console.log(`deleted ${val}`);
+    this.closeModal();
+  }
+
+  handleOptionClick(event: any) {
+    this.isModalActive = true;
+    this.selectedCategory = event;
+  }
+
+  closeModal() {
+    this.isModalActive = false;
+    this.selectedCategory = null;
   }
 
   ngOnInit() {

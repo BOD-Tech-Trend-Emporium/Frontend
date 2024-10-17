@@ -4,6 +4,7 @@ import { CategoryService } from '@services/category/category.service';
 import { BasicImagenComponent } from "../basic-imagen/basic-imagen.component";
 import { WhiteButtonComponent } from '@components/white-button/white-button.component';
 import { RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-landingpage-category',
@@ -16,6 +17,7 @@ export class LandingpageCategoryComponent implements OnInit{
   private categoryService: CategoryService = inject(CategoryService);
   categoriesWithMostProducts: CategoryDto[]=[];
   isLoading = true;
+  toastr: ToastrService = inject(ToastrService);
 
   ngOnInit(): void {
 
@@ -25,8 +27,8 @@ export class LandingpageCategoryComponent implements OnInit{
         this.isLoading = false;
       },
       error: (error: any)=>{
+        this.toastr.error('Connection error when fetching categories');
         this.isLoading = false;
-        //console.log(error);
       }
     });
 

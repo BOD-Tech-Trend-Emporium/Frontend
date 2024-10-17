@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { ProductEntity } from '@entities/Product.entity';
 import { environment } from '@environments/environment.local';
 import axios, { AxiosError } from 'axios';
+import { get } from 'node_modules/axios/index.cjs';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -35,4 +36,11 @@ export class ProductService {
       `${this.apiUrl}/products/three/latest`
     );
   }
+
+  public getProductById(id: string):Observable<ProductEntity>{
+    return this.httpClient.get<ProductEntity>(
+      `${this.apiUrl}/products/${id}`
+    );
+  }
+
 }

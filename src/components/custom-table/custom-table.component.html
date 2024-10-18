@@ -14,22 +14,22 @@
       @for (cell of getColumnsValues(item); track $index) {
       <td>{{ cell }}</td>
       } @if (delete || edit) {
-      <td class="w-[300px] flex justify-around items-center">
+      <td class="w-[200px]">
         @if (edit) {
-        <div class="w-[40%] flex justify-center items-center">
+        <div class="mb-2">
           <app-action-button
             value="Edit"
             [type]="'Edit'"
-            [data]="item.id"
+            [data]="item"
             (clicked)="handleOptionClick($event, 'edit')"
           />
         </div>
         } @if (delete) {
-        <div class="w-[40%] flex justify-center items-center">
+        <div class="mt-2">
           <app-action-button
             value="Delete"
             [type]="'delete'"
-            [data]="item.id"
+            [data]="item"
             (clicked)="handleOptionClick($event, 'delete')"
           />
         </div>

@@ -1,9 +1,4 @@
-<form
-  [formGroup]="loginForm"
-  class="w-[90%] max-w-[520px] flex flex-col my-10 bg-white justify-center items-start p-8 rounded-lg border-solid border-[1px] border-gray-400 drop-shadow-lg"
-  (submit)="handleLogin()"
->
-  <!-- <app-form-wrapper [formGroup]="loginForm" [onSubmit]="handleLogin"> -->
+<app-form-wrapper [formGroup]="loginForm" (onSubmit)="handleLogin($event)">
   <span class="text-lg font-light">Welcome !</span>
   <h3 class="text-2xl font-medium mt-5">Sign in to</h3>
   <span class="text-base mt-2 font-normal"
@@ -46,5 +41,4 @@
       <a routerLink="/signup" class="text-black text-base"> Register</a></span
     >
   </div>
-  <!-- </app-form-wrapper> -->
-</form>
+</app-form-wrapper>

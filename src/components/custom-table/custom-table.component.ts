@@ -21,6 +21,6 @@ export class CustomTableComponent {
   }
 
   handleOptionClick(value: string, type: string) {
-    this.optionClicked.emit({ value, type });
+    this.optionClicked.emit({ value: JSON.parse(value), type });
   }
 }

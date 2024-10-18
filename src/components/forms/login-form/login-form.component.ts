@@ -10,13 +10,13 @@ import { Router, RouterLink } from '@angular/router';
 import { TextFieldComponent } from '../form-fields/text-field/text-field.component';
 import { PasswordFieldComponent } from '../form-fields/password-field/password-field.component';
 import { CheckboxFieldComponent } from '../form-fields/checkbox-field/checkbox-field.component';
-import { FormWrapperComponent } from '../form-wrapper/form-wrapper.component';
-import { PrimaryButtonComponent } from '../buttons/primary-button/primary-button.component';
+import { PrimaryButtonComponent } from '../../buttons/primary-button/primary-button.component';
 import { AuthService } from '@services/auth/auth.service';
 import { EmailFieldComponent } from '../form-fields/email-field/email-field.component';
 import { ToastrService } from 'ngx-toastr';
-import { LoaderButtonComponent } from '../buttons/loader-button/loader-button.component';
+import { LoaderButtonComponent } from '../../buttons/loader-button/loader-button.component';
 import { LoginEntity } from '@entities/Login.entity';
+import { FormWrapperComponent } from '../form-wrapper/form-wrapper.component';
 
 @Component({
   selector: 'app-login-form',
@@ -48,17 +48,17 @@ export class LoginFormComponent {
     save: new FormControl(false),
   });
 
-  async handleLogin() {
+  async handleLogin(event: FormGroup) {
     this.isLoading = true;
     const request: LoginEntity = {
-      email: this.loginForm.value.email!,
-      password: this.loginForm.value.password!,
-      save: this.loginForm.value.save!,
+      email: event.value.email!,
+      password: event.value.password!,
+      save: event.value.save!,
     };
     const response: any = await this.authService.login(request);
     if (response.data) {
       this.toastr.success(`Welcome back ${response.data.userName}`);
-      this.loginForm.reset();
+      event.reset();
       setTimeout(() => {
         this.router.navigate(['/']);
       }, 1500);

@@ -18,8 +18,8 @@
 @else {
     <div class="flex justify-center w-full gap-5">
         @for (category of categoriesWithMostProducts; track $index) {
-            <div>
-                <app-basic-imagen [routerLink]="['/']" src="https://th.bing.com/th/id/OIP.cq2F1ltSo2frtm9UZqhVawHaDt?rs=1&pid=ImgDetMain" [figcaption]="category.name" [alt]="category.name"></app-basic-imagen>
+            <div class="h-20 w-20 mb-6 smallest:w-28 smallest:h-24 sm:w-40 sm:h-36 md:w-56 md:h-44 lg:w-80 lg:h-72 ">
+                <app-basic-imagen src="https://th.bing.com/th/id/OIP.cq2F1ltSo2frtm9UZqhVawHaDt?rs=1&pid=ImgDetMain" [figcaption]="category.name" [alt]="category.name"></app-basic-imagen>
             </div>
         }
     </div>

@@ -14,5 +14,5 @@ import { FooterComponent } from '@components/footer/footer.component';
   styleUrl: './landingpage.component.css'
 })
 export class LandingpageComponent{
-  carouselImage:string[] =["https://cdn.pixabay.com/photo/2024/04/11/16/20/business-8690142_1280.jpg","https://cdn.pixabay.com/photo/2024/03/26/11/57/e-commerce-8656646_1280.jpg"];
+  carouselImage:string[] =["https://cdn.pixabay.com/photo/2024/04/11/16/20/business-8690142_1280.jpg","https://cdn.pixabay.com/photo/2024/03/26/11/57/e-commerce-8656646_1280.jpg", "https://wallpapercave.com/wp/wp6208269.jpg"];
 }

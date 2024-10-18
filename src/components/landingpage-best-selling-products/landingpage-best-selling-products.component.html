@@ -17,7 +17,9 @@
     <div class="flex justify-center w-full gap-5">
         @for (product of bestSellingProducts; track $index) {
             <div>
-                <app-basic-imagen [routerLink]="['/']" [src]="product.image" [figcaption]="product.title" [alt]="product.description"></app-basic-imagen>
+                <div class="h-20 w-20 mb-6 smallest:w-28 smallest:h-24 sm:w-40 sm:h-36 md:w-56 md:h-44 lg:w-80 lg:h-72 ">
+                    <app-basic-imagen [routerLink]="['/product-detail', product.id]" [src]="product.image" [figcaption]="product.title" [alt]="product.description"></app-basic-imagen>
+                </div>
                 <p class="text-center">{{product.price | currency}}</p>  
             </div>
         }

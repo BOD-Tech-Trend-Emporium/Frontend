@@ -1,3 +1,3 @@
-<button type="button" [routerLink]="[componentUrl]" class="pt-2 pb-2 pl-8 pr-8 border-2 border-gray-500">
+<button type="button" [routerLink]="[componentUrl]" class="pt-2 pb-2 pl-8 pr-8 border-2 border-gray-500" [disabled]="disable" [ngClass]="{'border-y-black border-x-black cursor-pointer': disable}">
     {{value}}
 </button>

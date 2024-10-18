@@ -9,34 +9,33 @@ import { SignupComponent } from '@pages/signup/signup.component';
 import { UsersListComponent } from '@pages/users-list/users-list.component';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { NoAuthGuard } from 'src/guards/no-auth.guard';
-import { RoleGuard } from 'src/guards/Role.guard';
 
 export const routes: Routes = [
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-  },
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', component: LandingpageComponent },
   { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [NoAuthGuard] },
   {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    data: { validRoles: ['Admin', 'Employee'] },
+  },
+  {
     path: 'products-list',
     component: ProductsListComponent,
-    canActivate: [RoleGuard],
+    canActivate: [AuthGuard],
     data: { validRoles: ['Admin', 'Employee'] },
   },
   {
     path: 'categories-list',
     component: CategoriesListComponent,
-    canActivate: [RoleGuard],
+    canActivate: [AuthGuard],
     data: { validRoles: ['Admin', 'Employee'] },
   },
   {
     path: 'users-list',
     component: UsersListComponent,
-    canActivate: [RoleGuard],
+    canActivate: [AuthGuard],
     data: { validRoles: ['Admin'] },
   },
-  { path: 'landingpage', component: LandingpageComponent },
 ];

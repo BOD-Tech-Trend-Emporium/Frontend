@@ -1,0 +1,67 @@
+<app-form-wrapper [formGroup]="signupForm" (onSubmit)="handleSignup($event)">
+  <span class="text-lg font-light">Welcome !</span>
+  <h3 class="text-2xl font-medium mt-5">Sign up</h3>
+  <span class="text-base mt-2 font-normal">
+    Register to add items to your wishlist and make purchases
+  </span>
+  <div class="mt-8 flex flex-col w-full gap-y-8">
+    <app-email-field
+      [name]="'email'"
+      [label]="'Email'"
+      [placeholder]="'Enter your email'"
+      [formGroup]="signupForm"
+      [control]="this.signupForm.get('email')"
+    />
+    <app-text-field
+      [name]="'name'"
+      [label]="'Name'"
+      [placeholder]="'Enter your name'"
+      [formGroup]="signupForm"
+      [control]="this.signupForm.get('name')"
+    />
+    <app-text-field
+      [name]="'userName'"
+      [label]="'UserName'"
+      [placeholder]="'Enter your user name'"
+      [formGroup]="signupForm"
+      [control]="this.signupForm.get('userName')"
+    />
+    <app-password-field
+      [name]="'password'"
+      [label]="'Password'"
+      [placeholder]="'Enter your password'"
+      [formGroup]="signupForm"
+      [control]="this.signupForm.get('password')"
+    />
+    <app-password-field
+      [name]="'repeatPassword'"
+      [label]="'Repeat Password'"
+      [placeholder]="'Enter your password again'"
+      [formGroup]="signupForm"
+      [control]="this.signupForm"
+    />
+    <app-select-field
+      [name]="'securityQuestion'"
+      [label]="'Select your question'"
+      [formGroup]="signupForm"
+      [options]="this.options"
+      [control]="this.signupForm.get('securityQuestion')"
+    />
+    <app-text-field
+      [name]="'answer'"
+      [label]="'Your answer'"
+      [placeholder]="'Answer to your security question'"
+      [formGroup]="signupForm"
+      [control]="this.signupForm.get('answer')"
+    />
+    @if (isLoading) {
+    <app-loader-button />
+    } @else {
+    <app-primary-button value="Sign up" [disabled]="signupForm.invalid" />
+    }
+    <span class="mt-5 mx-auto text-gray-400 text-base font-semibold">
+      Already have an account?
+      <a routerLink="/login" class="text-black text-base"> Login</a></span
+    >
+  </div>
+</app-form-wrapper>

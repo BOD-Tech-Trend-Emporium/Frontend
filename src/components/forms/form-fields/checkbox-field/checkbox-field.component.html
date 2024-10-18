@@ -1,0 +1,12 @@
+<div
+  class="flex justify-center items-center gap-3 text-base font-light"
+  [formGroup]="this.formGroup"
+>
+  <input
+    [id]="this.name"
+    type="checkbox"
+    [formControlName]="this.name"
+    class="accent-black rounded-none scale-125 ml-1"
+  />
+  <label [for]="this.name" class="">{{ this.label }}</label>
+</div>

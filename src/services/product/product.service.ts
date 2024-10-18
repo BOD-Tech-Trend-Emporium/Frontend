@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ProductEntity } from '@entities/Product.entity';
+import { ProductByIdDto, ProductEntity } from '@entities/Product.entity';
 import { environment } from '@environments/environment.local';
 import axios, { AxiosError } from 'axios';
 import { get } from 'node_modules/axios/index.cjs';
@@ -37,8 +37,8 @@ export class ProductService {
     );
   }
 
-  public getProductById(id: string):Observable<ProductEntity>{
-    return this.httpClient.get<ProductEntity>(
+  public getProductById(id: string):Observable<ProductByIdDto>{
+    return this.httpClient.get<ProductByIdDto>(
       `${this.apiUrl}/products/${id}`
     );
   }

@@ -1,0 +1,7 @@
+<p class="mb-2 text-base opacity-70">Quantity</p>
+<div class="flex justify-between border-2 border-slate-800 opacity-85 w-24 h-12 items-center">
+    <button (click)="decrease()" class="w-12 pb-8 text-4xl opacity-80" [ngClass]="{'opacity-0 cursor-default': disableDecrement}">_</button>
+    <p>{{currentValue}}</p>
+    <button (click)="increase()" class="w-12 text-4xl opacity-80 " [ngClass]="{'opacity-0 cursor-default' : disableIncrement}">+</button>
+</div>
+

@@ -7,6 +7,7 @@ import { LoginComponent } from '@pages/login/login.component';
 import { LogoutComponent } from '@pages/logout/logout.component';
 import { ProductDetailComponent } from '@pages/product-detail/product-detail.component';
 import { ProductsListComponent } from '@pages/products-list/products-list.component';
+import { RecoverPasswordComponent } from '@pages/recover-password/recover-password.component';
 import { SignupComponent } from '@pages/signup/signup.component';
 import { UsersListComponent } from '@pages/users-list/users-list.component';
 import { AuthGuard } from 'src/guards/auth.guard';
@@ -16,6 +17,11 @@ export const routes: Routes = [
   { path: '', component: LandingpageComponent },
   { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [NoAuthGuard] },
+  {
+    path: 'recover-password',
+    component: RecoverPasswordComponent,
+    canActivate: [NoAuthGuard],
+  },
   {
     path: 'home',
     component: HomeComponent,

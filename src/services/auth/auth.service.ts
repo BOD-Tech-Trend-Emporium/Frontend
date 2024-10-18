@@ -6,6 +6,7 @@ import { SignUpEntity } from '@entities/Signup.entity';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserDataEntity } from '@entities/UserData.entity';
 import { decodeToken } from '@utils/jwt';
+import { RecoverPasswordEntity } from '@entities/RecoverPassword.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class AuthService {
   private loginUrl = `${environment.apiUrl}/login`;
   private logoutUrl = `${environment.apiUrl}/logout`;
   private signUpUrl = `${environment.apiUrl}/auth`;
+  private recoverPasswordUrl = `${environment.apiUrl}/auth/changePassword`;
 
   constructor() {}
 
@@ -34,6 +36,15 @@ export class AuthService {
   async signup(request: SignUpEntity) {
     try {
       const response = await axios.post(this.signUpUrl, request);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async recoverPassword(request: RecoverPasswordEntity) {
+    try {
+      const response = await axios.put(this.recoverPasswordUrl, request);
       return response;
     } catch (error) {
       return error;

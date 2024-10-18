@@ -36,6 +36,7 @@ export class ProductDetailComponent implements OnInit{
         })
       },
       error:(error:any)=>{
+        
         this.toastr.error('Unexpected error occurred');
       }
 

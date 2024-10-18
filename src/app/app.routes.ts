@@ -9,6 +9,7 @@ import { SignupComponent } from '@pages/signup/signup.component';
 import { UsersListComponent } from '@pages/users-list/users-list.component';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { NoAuthGuard } from 'src/guards/no-auth.guard';
+import { RoleGuard } from 'src/guards/Role.guard';
 
 export const routes: Routes = [
   {
@@ -19,8 +20,23 @@ export const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [NoAuthGuard] },
-  { path: 'products-list', component: ProductsListComponent },
-  { path: 'categories-list', component: CategoriesListComponent },
-  { path: 'users-list', component: UsersListComponent },
+  {
+    path: 'products-list',
+    component: ProductsListComponent,
+    canActivate: [RoleGuard],
+    data: { validRoles: ['Admin', 'Employee'] },
+  },
+  {
+    path: 'categories-list',
+    component: CategoriesListComponent,
+    canActivate: [RoleGuard],
+    data: { validRoles: ['Admin', 'Employee'] },
+  },
+  {
+    path: 'users-list',
+    component: UsersListComponent,
+    canActivate: [RoleGuard],
+    data: { validRoles: ['Admin'] },
+  },
   { path: 'landingpage', component: LandingpageComponent },
 ];

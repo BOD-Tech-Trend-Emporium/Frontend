@@ -36,7 +36,7 @@ export class AppComponent {
             Authorization: `Bearer ${userData.token}`,
           },
           body: '',
-          keepalive: true, // Hace que la petición continúe incluso si la página se está cerrando
+          keepalive: true,
         });
       });
     }

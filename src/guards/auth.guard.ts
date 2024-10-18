@@ -15,7 +15,6 @@ export class AuthGuard implements CanActivate {
     const validRoles = route.data['validRoles'];
     return this.authService.getUserData().pipe(
       map((userData) => {
-        console.log(userData);
         if (userData) {
           const tokenData = decodeToken(userData?.token);
           const userRole =

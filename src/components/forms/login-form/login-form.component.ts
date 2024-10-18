@@ -56,6 +56,7 @@ export class LoginFormComponent {
       save: event.value.save!,
     };
     const response: any = await this.authService.login(request);
+    console.log(response);
     if (response.data) {
       this.toastr.success(`Welcome back ${response.data.userName}`);
       event.reset();

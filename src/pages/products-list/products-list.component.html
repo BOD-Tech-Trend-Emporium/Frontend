@@ -31,8 +31,8 @@
     </div>
     } @else{
     <div class="m-auto w-[520px] flex items-end flex-col">
-      <div class="flex justify-end bg-white py-3 px-6 rounded-md">
-        <button (click)="closeModal()">X</button>
+      <div class="flex justify-end bg-white rounded-md">
+        <button (click)="closeModal()" class="py-3 px-6">X</button>
       </div>
       <app-product-form
         [productData]="selectedProduct?.value"

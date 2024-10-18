@@ -13,3 +13,14 @@ export interface Rating {
   rate: number;
   count: number;
 }
+
+export interface ProductByIdDto extends ProductEntity {
+  inventory:InventoryAuxDto
+}
+
+export interface InventoryAuxDto{
+  total: number;
+  available: number
+}
+
+

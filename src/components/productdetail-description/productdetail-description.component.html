@@ -12,7 +12,7 @@
     <div class="flex justify-between">
         <div>
             <div class="w-72">
-                <app-primary-button [value]="'Add to Cart -$'+productEntity?.price"></app-primary-button>
+                <app-black-button-function [value]="'Add to Cart -$'+productEntity?.price" (buttonFunction)="addToCart()"></app-black-button-function>
             </div>
             <p class="opacity-25 text-sm mt-2">Free standard shipping</p>
         </div>

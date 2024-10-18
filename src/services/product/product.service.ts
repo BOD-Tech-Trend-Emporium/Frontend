@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ProductEntity } from '@entities/Product.entity';
 import { UserDataEntity } from '@entities/UserData.entity';
+import { ProductByIdDto, ProductEntity } from '@entities/Product.entity';
 import { environment } from '@environments/environment.local';
 import { AuthService } from '@services/auth/auth.service';
 import axios, { AxiosError } from 'axios';
 import { firstValueFrom, Observable, take } from 'rxjs';
+import { get } from 'node_modules/axios/index.cjs';
 
 @Injectable({
   providedIn: 'root',
@@ -82,5 +83,9 @@ export class ProductService {
     return this.httpClient.get<ProductEntity[]>(
       `${this.baseApiUrl}/three/latest`
     );
+  }
+
+  public getProductById(id: string): Observable<ProductByIdDto> {
+    return this.httpClient.get<ProductByIdDto>(`${this.baseApiUrl}/${id}`);
   }
 }

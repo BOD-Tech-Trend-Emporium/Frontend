@@ -1,0 +1,19 @@
+<div class="flex justify-center">
+    <div class="flex justify-around mt-24 w-[80rem]">
+        <div class="grid grid-cols-2 grid-rows-2 gap-4">
+            <div class="w-56 h-56">
+                <app-basic-imagen [src]="productEntity?.image"></app-basic-imagen>
+            </div>
+            <div class="w-56 h-56">
+                <app-basic-imagen [src]="productEntity?.image"></app-basic-imagen>
+            </div>
+            <div class="w-56 h-56">
+                <app-basic-imagen [src]="productEntity?.image"></app-basic-imagen>
+            </div>
+            <div class="w-56 h-56">
+                <app-basic-imagen [src]="productEntity?.image"></app-basic-imagen>
+            </div>
+        </div>
+        <app-productdetail-description [productEntity]="productEntity"></app-productdetail-description>
+    </div>
+</div>

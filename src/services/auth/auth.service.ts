@@ -5,6 +5,7 @@ import { environment } from '@environments/environment.local';
 import { SignUpEntity } from '@entities/Signup.entity';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserDataEntity } from '@entities/UserData.entity';
+import { decodeToken } from '@utils/jwt';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ import { UserDataEntity } from '@entities/UserData.entity';
 export class AuthService {
   private userData = new BehaviorSubject<UserDataEntity | null>(null);
   private loginUrl = `${environment.apiUrl}/login`;
+  private logoutUrl = `${environment.apiUrl}/logout`;
   private signUpUrl = `${environment.apiUrl}/auth`;
 
   constructor() {}
@@ -39,8 +41,20 @@ export class AuthService {
   }
 
   async logout() {
-    localStorage.removeItem('userData');
-    this.userData.next(null);
+    try {
+      const response = await axios.post(
+        this.logoutUrl,
+        {},
+        { headers: { Authorization: `Bearer ${this.userData.value?.token}` } }
+      );
+      this.userData.next(response.data);
+      console.log(response);
+      localStorage.removeItem('userData');
+      this.userData.next(null);
+      return response;
+    } catch (error) {
+      return error;
+    }
   }
 
   getUserData() {

@@ -4,5 +4,5 @@ export interface SignUpEntity {
   userName: string;
   password: string;
   securityQuestion: string;
-  answer: string;
+  securityQuestionAnswer: string;
 }

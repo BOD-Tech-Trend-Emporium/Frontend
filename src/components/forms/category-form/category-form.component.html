@@ -1,0 +1,16 @@
+<app-form-wrapper [formGroup]="categoryForm" (onSubmit)="handleActionButton($event)">
+    <h3 class="font-bold mb-3 text-xl">Create Category</h3>
+    <div class="mt-8 flex flex-col w-full gap-y-8">
+        <app-text-field
+        [name]="'name'"
+        [label]="'Name'"
+        [placeholder]="'Enter the category name'"
+        [formGroup]="categoryForm"
+        [control]="this.categoryForm.get('name')"
+      />
+      <app-primary-button
+      [value]="this.categoryData ? 'Save' : 'Add'"
+      [disabled]="this.categoryForm.invalid"
+    />
+    </div>
+</app-form-wrapper>

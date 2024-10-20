@@ -5,6 +5,8 @@ import { environment } from '@environments/environment.local';
 import { SignUpEntity } from '@entities/Signup.entity';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserDataEntity } from '@entities/UserData.entity';
+import { decodeToken } from '@utils/jwt';
+import { RecoverPasswordEntity } from '@entities/RecoverPassword.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +14,9 @@ import { UserDataEntity } from '@entities/UserData.entity';
 export class AuthService {
   private userData = new BehaviorSubject<UserDataEntity | null>(null);
   private loginUrl = `${environment.apiUrl}/login`;
+  private logoutUrl = `${environment.apiUrl}/logout`;
   private signUpUrl = `${environment.apiUrl}/auth`;
+  private recoverPasswordUrl = `${environment.apiUrl}/auth/changePassword`;
 
   constructor() {}
 
@@ -38,9 +42,30 @@ export class AuthService {
     }
   }
 
+  async recoverPassword(request: RecoverPasswordEntity) {
+    try {
+      const response = await axios.put(this.recoverPasswordUrl, request);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+
   async logout() {
-    localStorage.removeItem('userData');
-    this.userData.next(null);
+    try {
+      const response = await axios.post(
+        this.logoutUrl,
+        {},
+        { headers: { Authorization: `Bearer ${this.userData.value?.token}` } }
+      );
+      this.userData.next(response.data);
+      console.log(response);
+      localStorage.removeItem('userData');
+      this.userData.next(null);
+      return response;
+    } catch (error) {
+      return error;
+    }
   }
 
   getUserData() {

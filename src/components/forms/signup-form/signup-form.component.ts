@@ -49,8 +49,11 @@ export class SignupFormComponent {
   toastr: ToastrService = inject(ToastrService);
 
   options = [
-    { value: '1', name: "Pet's name" },
-    { value: '2', name: 'Nickname' },
+    { value: '0', name: 'What was the name of your first pet?' },
+    { value: '1', name: 'What is the name of the street where you grew up?' },
+    { value: '2', name: 'What was your childhood nickname?' },
+    { value: '3', name: 'What is your mother’s maiden name?' },
+    { value: '4', name: 'What was the model of your first car?' },
   ];
 
   signupForm = new FormGroup(
@@ -84,7 +87,7 @@ export class SignupFormComponent {
       userName: event.value.userName!,
       password: event.value.password!,
       securityQuestion: event.value.securityQuestion!,
-      answer: event.value.answer!,
+      securityQuestionAnswer: event.value.answer!,
     };
     const response: any = await this.authService.signup(request);
     if (response.data) {

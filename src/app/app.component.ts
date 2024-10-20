@@ -20,25 +20,6 @@ export class AppComponent {
     this.authService.loadUserTokenFromStorage();
     this.authService.getUserData().subscribe((i) => {
       this.userData = i;
-      this.handleReloadPage(this.userData);
     });
   }
-
-  handleReloadPage = (userData: UserDataEntity | null) => {
-    const storedUser = localStorage.getItem('userData');
-    if (!storedUser && userData) {
-      window.addEventListener('beforeunload', function (event) {
-        event.preventDefault();
-        fetch(`${environment.apiUrl}/logout`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${userData.token}`,
-          },
-          body: '',
-          keepalive: true,
-        });
-      });
-    }
-  };
 }

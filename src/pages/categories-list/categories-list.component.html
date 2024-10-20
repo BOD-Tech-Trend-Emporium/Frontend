@@ -1,5 +1,5 @@
 <div class="w-[90%] xl:w-[75%] m-auto py-14 flex flex-col gap-14">
-  <h2 class="text-3xl font-bold">Ctegories List</h2>
+  <h2 class="text-3xl font-bold">Categories List</h2>
   @if (isLoading) {
   <div class="h-[65vh] w-full flex justify-center items-center">
     <app-loader />
@@ -34,7 +34,7 @@
       <div class="w-full flex justify-end">
         <button (click)="closeModal()">X</button>
       </div>
-      <app-signup-form />
+      <app-category-form [categoryData]="selectedCategory?.value" [onFinish]="editCategory"></app-category-form>
     </div>
     }
   </app-modal>

@@ -1,10 +1,11 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { UserEntity } from '@entities/User.entity';
+import { CreateUserDto, UserDto, UserEntity } from '@entities/User.entity';
 import { UserDataEntity } from '@entities/UserData.entity';
 import { environment } from '@environments/environment.local';
 import { AuthService } from '@services/auth/auth.service';
 import axios, { AxiosError } from 'axios';
-import { take, takeUntil } from 'rxjs';
+import { catchError, Observable, take, throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,9 @@ export class UserService {
   private userData: UserDataEntity | null = null;
   private authService: AuthService = inject(AuthService);
   private usersEndpoint = `${environment.apiUrl}/user`;
+  private adminEndpoint = `${environment.apiUrl}/admin/auth`;
+  private httpClient: HttpClient = inject(HttpClient);
+
 
   constructor() {
     this.authService
@@ -34,5 +38,19 @@ export class UserService {
     } catch (error) {
       return error as AxiosError;
     }
+  }
+
+  public createEmployee(createUserDto: CreateUserDto): Observable<UserDto>{
+    const reqHeader = new HttpHeaders({
+      'Authorization': `Bearer ${this.userData?.token}`
+    });
+    return this.httpClient.post<UserDto>(`${this.adminEndpoint}`, createUserDto,{
+      headers: reqHeader
+    }).pipe(
+      catchError(this.handleError));;
+  }
+
+  private handleError(error: HttpErrorResponse){
+    return throwError(error)
   }
 }

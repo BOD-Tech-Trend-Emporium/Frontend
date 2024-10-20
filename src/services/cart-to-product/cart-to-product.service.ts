@@ -23,7 +23,6 @@ export class CartToProductService {
       });
   }
   public addProductInCart(createCartToProductDto: CreateCartToProductDto): Observable<CartToProductDto>{
-      console.log(this.userData?.token);
       const reqHeader = new HttpHeaders({
         'Authorization': `Bearer ${this.userData?.token}`
       });

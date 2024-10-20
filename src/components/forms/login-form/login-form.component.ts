@@ -17,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LoaderButtonComponent } from '../../buttons/loader-button/loader-button.component';
 import { LoginEntity } from '@entities/Login.entity';
 import { FormWrapperComponent } from '../form-wrapper/form-wrapper.component';
+import { environment } from '@environments/environment.local';
 
 @Component({
   selector: 'app-login-form',
@@ -59,6 +60,20 @@ export class LoginFormComponent {
     if (response.data) {
       this.toastr.success(`Welcome back ${response.data.userName}`);
       event.reset();
+      if (!request.save) {
+        window.addEventListener('beforeunload', function (event) {
+          event.preventDefault();
+          fetch(`${environment.apiUrl}/logout`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${response.data.token}`,
+            },
+            body: '',
+            keepalive: true,
+          });
+        });
+      }
       setTimeout(() => {
         this.router.navigate(['/']);
       }, 1500);

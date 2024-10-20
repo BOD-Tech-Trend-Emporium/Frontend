@@ -39,7 +39,7 @@ export class CategoryFormComponent {
 
   handleActionButton(event: FormGroup) {
     if(this.categoryData){
-
+      this.handleEdit(event);
     }
     else{
       this.handleCreate(event);

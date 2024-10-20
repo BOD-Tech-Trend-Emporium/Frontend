@@ -34,7 +34,7 @@
       <div class="w-full flex justify-end">
         <button (click)="closeModal()">X</button>
       </div>
-      <app-signup-form />
+      <app-category-form [categoryData]="selectedCategory?.value" [onFinish]="editCategory"></app-category-form>
     </div>
     }
   </app-modal>

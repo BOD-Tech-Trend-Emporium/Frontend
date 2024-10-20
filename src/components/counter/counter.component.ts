@@ -10,9 +10,9 @@ import { Component, EventEmitter, Input, output, Output } from '@angular/core';
 })
 export class CounterComponent {
   @Output() valueEmitter = new EventEmitter<number>();
-  currentValue:number = 0;
+  currentValue:number = 1;
   @Input() maxValue?: number =10;
-  @Input() minValue: number = 0;
+  @Input() minValue: number = 1;
   disableIncrement: boolean = false;
   disableDecrement: boolean = true;
 

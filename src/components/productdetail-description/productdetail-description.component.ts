@@ -25,9 +25,13 @@ export class ProductdetailDescriptionComponent{
   createCartToProduct?:CreateCartToProductDto;
   private route = inject(ActivatedRoute);
   
-  currentValue: number =0;
+  currentValue: number =1;
   getCurrentValue(event: number){
     this.currentValue = event;
+  }
+
+  getCost(){
+    return this.currentValue * (this.productEntity?.price as number);
   }
 
   addToCart(){

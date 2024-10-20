@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { CategoriesListComponent } from '@pages/categories-list/categories-list.component';
 import { CreateCategoryComponent } from '@pages/create-category/create-category.component';
+import { CreateEmployeeComponent } from '@pages/create-employee/create-employee.component';
 import { CreateProductComponent } from '@pages/create-product/create-product.component';
 import { DashboardComponent } from '@pages/dashboard/dashboard.component';
 import { HomeComponent } from '@pages/home/home.component';
@@ -43,5 +44,6 @@ export const routes: Routes = [
   },
   { path: 'product-detail/:id', component: ProductDetailComponent },
   { path: 'create-category', component: CreateCategoryComponent, canActivate: [AuthGuard], data: {validRoles: ['Admin', 'Employee']}},
-  { path: 'create-product', component: CreateProductComponent, canActivate: [AuthGuard], data: {validRoles: ['Admin', 'Employee']}}
+  { path: 'create-product', component: CreateProductComponent, canActivate: [AuthGuard], data: {validRoles: ['Admin', 'Employee']}},
+  { path: 'create-employee', component: CreateEmployeeComponent, canActivate: [AuthGuard], data: {validRoles: ['Admin']}}
 ];

@@ -38,7 +38,7 @@ export class ProductFormComponent {
     title: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
     category: new FormControl('', [Validators.required]),
-    description: new FormControl(', [Validators.required]'),
+    description: new FormControl('', [Validators.required]),
     image: new FormControl('', [Validators.required]),
     inventory: new FormControl('', [Validators.required]),
   });
@@ -98,6 +98,8 @@ export class ProductFormComponent {
       requestBody,
       this.productData.id
     );
+    console.log(requestBody);
+    console.log(this.productData.id);
     if (typeof response === 'object') {
       this.toastr.error(response.message, 'Error');
     } else {

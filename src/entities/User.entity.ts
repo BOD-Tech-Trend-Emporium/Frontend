@@ -6,3 +6,20 @@ export interface UserEntity {
   role: string;
   createdAt: string;
 }
+
+export interface CreateUserDto {
+  name: string;
+  email: string;
+  userName: string;
+  role: string;
+  password: string;
+}
+
+export interface UserDto {
+  id: string;
+  name: string;
+  email: string;
+  userName: string;
+  role: string;
+  createdAt: string;
+}

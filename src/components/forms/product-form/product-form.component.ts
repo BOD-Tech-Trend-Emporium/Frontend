@@ -98,8 +98,6 @@ export class ProductFormComponent {
       requestBody,
       this.productData.id
     );
-    console.log(requestBody);
-    console.log(this.productData.id);
     if (typeof response === 'object') {
       this.toastr.error(response.message, 'Error');
     } else {

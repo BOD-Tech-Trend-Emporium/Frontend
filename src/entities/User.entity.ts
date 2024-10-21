@@ -13,6 +13,8 @@ export interface CreateUserDto {
   userName: string;
   role: string;
   password: string;
+  securityQuestion: string;
+  securityQuestionAnswer: string;
 }
 
 export interface UserDto {

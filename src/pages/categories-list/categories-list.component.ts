@@ -8,7 +8,7 @@ import { AxiosError } from 'axios';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { ActionButtonComponent } from '../../components/buttons/action-button/action-button.component';
 import { SignupFormComponent } from '../../components/forms/signup-form/signup-form.component';
-import { CategoryFormComponent } from "../../components/forms/category-form/category-form.component";
+import { CategoryFormComponent } from '../../components/forms/category-form/category-form.component';
 
 @Component({
   selector: 'app-categories-list',
@@ -19,8 +19,8 @@ import { CategoryFormComponent } from "../../components/forms/category-form/cate
     ModalComponent,
     ActionButtonComponent,
     SignupFormComponent,
-    CategoryFormComponent
-],
+    CategoryFormComponent,
+  ],
   templateUrl: './categories-list.component.html',
   styleUrl: './categories-list.component.css',
 })
@@ -55,8 +55,17 @@ export class CategoriesListComponent {
   }
 
   async deleteProduct(val: string) {
-    console.log(`deleted ${val}`);
-    this.closeModal();
+    const categoryId = JSON.parse(val).id;
+    const response = await this.categoriesService.deleteCategoryById(
+      categoryId
+    );
+    if ('message' in response) {
+      this.toastr.error(response.message, 'Error');
+    } else {
+      this.toastr.success('Category deleted');
+      await this.getCategoriesList();
+      this.closeModal();
+    }
   }
 
   handleOptionClick(event: any) {

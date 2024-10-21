@@ -1,0 +1,62 @@
+<div class="w-[30%]">
+  <h1 class="text-4xl font-bold">Shop list</h1>
+  <p class="mt-5 leading-8">
+    Here, you'll find a curated selection of items tailored to your needs.
+    Easily browse through categories, compare products, and add your favorites
+    to the cart. Whether you're looking for the latest deals or essentials,
+    we've got you covered with an intuitive shopping experience.
+  </p>
+</div>
+<div class="w-full mt-10 flex justify-between">
+  <form
+    [formGroup]="filterForm"
+    class="w-[20%] flex gap-10 flex-col"
+    (submit)="handleFilter()"
+  >
+    <h3 class="text-lg font-medium">Filters</h3>
+    <div class="flex gap-6 flex-col">
+      <app-select-field
+        [name]="'category'"
+        [label]="'Select your category'"
+        [formGroup]="filterForm"
+        [options]="this.categories"
+        [control]="this.filterForm.get('category')"
+      />
+      <app-number-field
+        [name]="'minPrice'"
+        [label]="'Minimum price'"
+        [placeholder]="'Minimum price for products'"
+        [formGroup]="filterForm"
+        [control]="this.filterForm.get('minPrice')"
+      />
+      <app-number-field
+        [name]="'maxPrice'"
+        [label]="'Maximum price'"
+        [placeholder]="'Maximum price for products'"
+        [formGroup]="filterForm"
+        [control]="this.filterForm.get('maxPrice')"
+      />
+      <app-primary-button value="Filter" [disabled]="filterForm.invalid" />
+    </div>
+  </form>
+  <div class="w-[75%] flex justify-center items-center flex-wrap gap-12">
+    @if (isLoading) {
+    <app-loader />
+    } @else{ @for (product of productsList; track $index) {
+
+    <div>
+      <div
+        class="h-20 w-20 mb-6 smallest:w-28 smallest:h-24 sm:w-40 sm:h-36 md:w-56 md:h-44 lg:w-80 lg:h-72"
+      >
+        <app-basic-imagen
+          [routerLink]="['/product-detail', product.id]"
+          [src]="product.image"
+          [figcaption]="product.title"
+          [alt]="product.description"
+        ></app-basic-imagen>
+      </div>
+      <p class="text-center">{{ product.price | currency }}</p>
+    </div>
+    } }
+  </div>
+</div>

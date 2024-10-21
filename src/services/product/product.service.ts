@@ -39,9 +39,12 @@ export class ProductService {
     }
   }
 
-  async searchProducts(): Promise<ProductEntity[] | AxiosError> {
+  async searchProducts(query: string): Promise<ProductEntity[] | AxiosError> {
+    console.log(query);
     try {
-      const response = await axios.get(this.productsStoreEndpoint);
+      const response = await axios.get(
+        `${this.productsStoreEndpoint}?${query}&pageSize=20`
+      );
       return response.data;
     } catch (error) {
       return error as AxiosError;

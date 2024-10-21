@@ -1,4 +1,4 @@
-<div class="w-[30%]">
+<div class="w-[100%] lg:w-[30%]">
   <h1 class="text-4xl font-bold">Shop list</h1>
   <p class="mt-5 leading-8">
     Here, you'll find a curated selection of items tailored to your needs.
@@ -7,13 +7,15 @@
     we've got you covered with an intuitive shopping experience.
   </p>
 </div>
-<div class="w-full mt-10 flex justify-between">
+<div
+  class="w-full mt-10 flex flex-col lg:flex-row justify-center items-center lg:items-start lg:justify-between"
+>
   <form
     [formGroup]="filterForm"
-    class="w-[20%] flex gap-10 flex-col"
+    class="w-[80%] lg:w-[20%] flex gap-10 flex-col"
     (submit)="handleFilter()"
   >
-    <h3 class="text-lg font-medium">Filters</h3>
+    <h3 class="text-xl font-medium">Filters</h3>
     <div class="flex gap-6 flex-col">
       <app-select-field
         [name]="'category'"
@@ -36,13 +38,18 @@
         [formGroup]="filterForm"
         [control]="this.filterForm.get('maxPrice')"
       />
+      <app-action-button value="Clear filters" (clicked)="clearFilters()" />
       <app-primary-button value="Filter" [disabled]="filterForm.invalid" />
     </div>
   </form>
-  <div class="w-[75%] flex justify-center items-center flex-wrap gap-12">
+  <div
+    class="w-[100%] lg:w-[75%] flex justify-center items-center flex-wrap gap-12 mt-16"
+  >
     @if (isLoading) {
     <app-loader />
-    } @else{ @for (product of productsList; track $index) {
+    } @else{ @if(productsList.length === 0){
+    <h3 class="text-2xl">No matching products</h3>
+    } @else { @for (product of productsList; track $index) {
 
     <div>
       <div
@@ -57,6 +64,6 @@
       </div>
       <p class="text-center">{{ product.price | currency }}</p>
     </div>
-    } }
+    } }}
   </div>
 </div>

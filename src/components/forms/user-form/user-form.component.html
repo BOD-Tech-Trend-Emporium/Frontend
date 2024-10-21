@@ -32,6 +32,20 @@
       [formGroup]="userForm"
       [control]="this.userForm.get('password')"
     />
+    <app-select-field
+      [name]="'securityQuestion'"
+      [label]="'Select your question'"
+      [formGroup]="userForm"
+      [options]="this.options"
+      [control]="this.userForm.get('securityQuestion')"
+    />
+    <app-text-field
+      [name]="'answer'"
+      [label]="'Your answer'"
+      [placeholder]="'Answer to your security question'"
+      [formGroup]="userForm"
+      [control]="this.userForm.get('answer')"
+    />
     <app-primary-button
       [value]="this.userData ? 'Save' : 'Add'"
       [disabled]="this.userForm.invalid"

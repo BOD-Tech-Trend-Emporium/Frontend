@@ -72,6 +72,14 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     data: { validRoles: ['Admin'] },
   },
-  { path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuard], data: {validRoles: ['Shopper']}}
-
+  {
+    path: 'shoplist',
+    component: ShopListComponent,
+  },
+  {
+    path: 'shopping-cart',
+    component: ShoppingCartComponent,
+    canActivate: [AuthGuard],
+    data: { validRoles: ['Shopper'] },
+  },
 ];

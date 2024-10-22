@@ -12,7 +12,7 @@ import { AxiosError } from 'axios';
 import { ProductService } from '@services/product/product.service';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { BasicImagenComponent } from '../../components/basic-imagen/basic-imagen.component';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ActionButtonComponent } from '../../components/buttons/action-button/action-button.component';
 
 @Component({
@@ -36,6 +36,8 @@ export class ShopListComponent {
   currentPage = 1;
   isLoading = false;
   isLoadingNewContent = false;
+  route: ActivatedRoute = inject(ActivatedRoute);
+  router: Router = inject(Router);
   categoryService: CategoryService = inject(CategoryService);
   productService: ProductService = inject(ProductService);
   toastr: ToastrService = inject(ToastrService);
@@ -53,8 +55,16 @@ export class ShopListComponent {
   });
 
   ngOnInit() {
+    this.productsList = [];
     this.getCategories();
-    this.searchProducts();
+    this.handleSearchItem();
+  }
+
+  handleSearchItem() {
+    this.route.queryParams.subscribe((params) => {
+      const title = params['title'] || '';
+      this.searchProducts(title);
+    });
   }
 
   transformCategories = (categories: CategoryEntity[]) => {
@@ -76,16 +86,25 @@ export class ShopListComponent {
     }
   }
 
-  async searchProducts() {
-    const query = this.getQueryFromForm(this.filterForm.value);
-    console.log(query);
+  async searchProducts(title: string = '') {
+    let query = `${this.getQueryFromForm(this.filterForm.value)}`;
+    if (title !== '') {
+      query += `title=${title}`;
+    }
     this.isLoading = true;
     const products: ProductEntity[] | AxiosError =
-      await this.productService.searchProducts(query, this.currentPage);
+      await this.productService.searchProducts(
+        query,
+        title ? 1 : this.currentPage
+      );
     if ('message' in products) {
       this.toastr.error(products.message, 'Error');
     } else {
-      this.productsList.push(...products);
+      if (title !== '') {
+        this.productsList = products;
+      } else {
+        this.productsList.push(...products);
+      }
     }
     this.isLoading = false;
   }
@@ -118,7 +137,6 @@ export class ShopListComponent {
   }
 
   async clearFilters() {
-    console.log('a');
     this.filterForm.setValue({
       category: '',
       minPrice: '',
@@ -127,6 +145,7 @@ export class ShopListComponent {
     this.currentPage = 1;
     await this.searchProducts();
     this.productsList = [];
+    this.router.navigate(['/shoplist']);
   }
 
   async handleFilter() {

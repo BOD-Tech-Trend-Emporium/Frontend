@@ -1,27 +1,50 @@
-# Frontend
+# Tech Trend Emporium Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.1.
+## Project Overview
 
-## Development server
+Tech-Trend-Emporium is an e-commerce platform designed to manage the store’s inventory, customer orders, and payment processing.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Branch Strategy
 
-## Code scaffolding
+This project follows the Git-flow strategy with the following key branches:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Main**: Contains the production version of the project.
+- **Release**: Serves as a mid step to check if the release is ready to put into production.
+- **Develop**: Serves as the integration branch for features.
+- **Feature**: Separate branches created for new features.
+- **Hotfix**: Separate branches created for make fast ans small changes in production envirorment.
 
-## Build
+## Contribution Guidelines
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+All changes to the `main` branch must be done via Pull Requests (PRs) with at least **two approvals** before merging. No direct commits to `main` are allowed.
 
-## Running unit tests
+### Steps to Contribute:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/BOD-Tech-Trend-Emporium/Frontend.git
+   ```
+2. Checkout the `develop` branch and create a feature branch:
+   ```bash
+   git checkout develop
+   git checkout -b feature/your-feature-name
+   ```
+3. Implement your changes and commit them:
+   ```bash
+   git commit -m "Add your message"
+   git push origin feature/your-feature-name
+   ```
+4. Create a Pull Request (PR) from your feature branch to `develop` and wait for at least two approvals before merging.
+5. Merge `develop` into `release` once the feature is stable.
+6. Merge `release` into `main` once the team is sure the changes are ready to be push into production envirorment
 
-## Running end-to-end tests
+## Documentation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+A detailed documentation on the branching strategy and contribution process is available in the project’s [Wiki](https://github.com/BOD-Tech-Trend-Emporium/backend/wiki).
 
-## Further help
+## Authors
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Santiago Alvarez Ricardo](https://github.com/salvarezri)
+- [Jhoan Oswaldo Ome Vega](https://github.com/Oswe-gif)
+- [Jonathan Buitrago Roncancio](https://github.com/jonathanb500)
+

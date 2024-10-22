@@ -18,9 +18,6 @@ import { environment } from 'src/environments/environment.local';
   styleUrl: './navbar-user-section.component.css'
 })
 export class NavbarUserSectionComponent {
-  authService: AuthService = inject(AuthService);
-  toastr: ToastrService = inject(ToastrService);
-  router: Router = inject(Router);
 
   user: UserEntity= {
     email : "Example@Email",
@@ -30,20 +27,4 @@ export class NavbarUserSectionComponent {
     createdAt:'2024-05-17',
     name: 'Diego'
   }
-
-
-
-  async handleLogout() {
-    const response: any = await this.authService.logout();
-    if (response.data) {
-      this.toastr.success('Logout successfully');
-    } else {
-      this.toastr.error('Somethign went wrong, try again');
-    }
-    setTimeout(() => {
-      this.router.navigate(['/']);
-    }, 500);
-  }
-
-
 }

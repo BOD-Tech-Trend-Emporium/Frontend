@@ -2,7 +2,7 @@
   <!-- Username -->
   <!-- Show cart icon for 'Shopper' -->
   <ng-container *ngIf="user.role === 'Shooper'">
-    <a href="#" class="text-black text-sm sm:text-base font-semibold underline">
+    <a [routerLink]='"/shopping-cart"' class="text-black text-sm sm:text-base font-semibold underline">
       <img src="/icons/cart.svg" alt="cart icon" class="w-6 h-6 inline-block">
     </a>
   </ng-container>

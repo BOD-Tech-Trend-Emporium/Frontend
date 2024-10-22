@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input, input } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { UserEntity } from '@entities/User.entity';
 import { AuthService } from '@services/auth/auth.service';
@@ -18,13 +18,7 @@ import { environment } from 'src/environments/environment.local';
   styleUrl: './navbar-user-section.component.css'
 })
 export class NavbarUserSectionComponent {
+  @Input() user: any = {}
 
-  user: UserEntity= {
-    email : "Example@Email",
-    id: "8EF5E519-C5A0-47BA-3D0B-08DCEF596F78",
-    userName: "JohnDoe",
-    role:'Shooper',
-    createdAt:'2024-05-17',
-    name: 'Diego'
-  }
+  
 }

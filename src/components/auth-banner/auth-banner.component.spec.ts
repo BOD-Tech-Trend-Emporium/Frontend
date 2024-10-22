@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginBannerComponent } from './auth-banner.component';
+import { AuthBannerComponent } from './auth-banner.component';
 
 describe('LoginBannerComponent', () => {
-  let component: LoginBannerComponent;
-  let fixture: ComponentFixture<LoginBannerComponent>;
+  let component: AuthBannerComponent;
+  let fixture: ComponentFixture<AuthBannerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoginBannerComponent],
+      imports: [AuthBannerComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LoginBannerComponent);
+    fixture = TestBed.createComponent(AuthBannerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

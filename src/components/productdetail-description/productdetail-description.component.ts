@@ -10,6 +10,7 @@ import { CartToProductDto, CreateCartToProductDto } from '@entities/CartToProduc
 import { BlackButtonFunctionComponent } from "../black-button-function/black-button-function.component";
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-productdetail-description',

@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { User } from '@entities/User.entity';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { UserEntity } from '@entities/User.entity';
+import { AuthService } from '@services/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 import { routes } from 'src/app/app.routes';
 import { environment } from 'src/environments/environment.local';
 
@@ -8,44 +11,38 @@ import { environment } from 'src/environments/environment.local';
   selector: 'app-navbar-user-section',
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    RouterLink
   ],
   templateUrl: './navbar-user-section.component.html',
   styleUrl: './navbar-user-section.component.css'
 })
 export class NavbarUserSectionComponent {
+  authService: AuthService = inject(AuthService);
+  toastr: ToastrService = inject(ToastrService);
+  router: Router = inject(Router);
 
-  user: User= {
+  user: UserEntity= {
     email : "Example@Email",
     id: "8EF5E519-C5A0-47BA-3D0B-08DCEF596F78",
-    username: "JohnDoe",
-    role:'Admin'
+    userName: "JohnDoe",
+    role:'Shooper',
+    createdAt:'2024-05-17',
+    name: 'Diego'
   }
 
-  logout() {
-    const token = localStorage.getItem('token'); // Retrieve the JWT token from local storage
 
-    fetch(`${environment.apiUrl}/api/logout`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Logout failed');
-      }
-      return response.json(); // You can process the response if needed
-    })
-    .then(() => {
-      // Clear user data on successful logout
-      localStorage.removeItem('token'); // Remove token from local storage
-      // Reload
-    })
-    .catch(err => {
-      console.error('Error:', err); // Handle error if necessary
-    });
+
+  async handleLogout() {
+    const response: any = await this.authService.logout();
+    if (response.data) {
+      this.toastr.success('Logout successfully');
+    } else {
+      this.toastr.error('Somethign went wrong, try again');
+    }
+    setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 500);
   }
 
 

@@ -1,19 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { NavbarUserSectionComponent } from '@components/navbar-user-section/navbar-user-section.component';
-import { User } from '@entities/User.entity';
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
     NavbarUserSectionComponent,
-    CommonModule
+    CommonModule,
+    RouterLink
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  isLoggedIn: boolean = false;  
+  isLoggedIn: boolean = true;  
   isDropdownOpen = false; 
 
   toggleDropdown() {

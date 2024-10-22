@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NavbarComponent } from '@components/navbar/navbar.component';
 import { UserDataEntity } from '@entities/UserData.entity';
 import { AuthService } from '@services/auth/auth.service';
 import { decodeToken } from '@utils/jwt';
@@ -8,7 +7,7 @@ import { decodeToken } from '@utils/jwt';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, NavbarComponent],
+  imports: [RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

@@ -1,10 +1,14 @@
-<nav class="bg-gray-100 text-black py-1 px-4 sm:px-6 md:px-8 max-h-16 flex justify-between items-center shadow-lg relative">
+<nav class="bg-gray-100 text-black py-1 px-4 sm:px-6 md:px-8 max-h-16 flex justify-between items-center shadow-lg fixed w-full top-0 z-50">
   <div class="flex items-center space-x-6 p-6">
-    <div class="cursor-pointer flex items-center space-x-3">
+    <a [routerLink]='"/"' class="cursor-pointer flex items-center space-x-3">
       <img src="assets/Logo.png" alt="App Icon" class="w-12 h-12">
-      <a href="/" class="text-black text-base sm:text-base font-extrabold block sm:hidden lg:block">Tech Trend Emporium</a>
-    </div>
+      <a [routerLink]='"/"' class="text-black text-base sm:text-base font-extrabold block sm:hidden lg:block">Tech Trend Emporium</a>
+    </a>
+    <!-- Desktop Menu (hidden on small screens) -->
+    <a [routerLink]='"/"' class="text-black text-sm sm:text-base font-semibold">Shoplist</a>
+    <a [routerLink]='"/"' class="text-black text-sm sm:text-base font-semibold">Wishlist</a>
   </div>
+  
 
   <!-- Hamburger menu button (visible on small screens) -->
   <div class="sm:hidden">
@@ -15,14 +19,9 @@
     </button>
   </div>
 
-  <!-- Desktop Menu (hidden on small screens) -->
-  <div class="hidden sm:flex items-center space-x-6">
-    <a href="/" class="text-black text-sm sm:text-base font-semibold">Shoplist</a>
-    <a href="/" class="text-black text-sm sm:text-base font-semibold">Wishlist</a>
-  </div>
 
   <!-- Search Bar -->
-  <div class="flex-grow max-w-xs sm:max-w-md lg:max-w-lg hidden sm:block p-6">
+  <div class="flex-grow max-w-4xl  hidden sm:block p-6 md:p-12">
     <input
       type="text"
       placeholder="Search..."
@@ -36,20 +35,25 @@
       <app-navbar-user-section></app-navbar-user-section>
     </ng-container>
     <ng-template #log_in_anchor>
-      <a href="/" class="text-black text-sm font-semibold">Log-in</a>
+      <a [routerLink]='"/login"' class="text-black text-sm font-semibold">Log-in</a>
     </ng-template>
   </div>
 
   <!-- Dropdown Menu (visible on small screens when toggled) -->
   <div *ngIf="isDropdownOpen" 
        class="absolute top-full left-0 right-0 bg-gray-100 z-50 sm:hidden flex flex-col items-center space-y-3 py-3 shadow-lg">
-    <a href="/" class="text-black text-sm font-semibold">Shoplist</a>
-    <a href="/" class="text-black text-sm font-semibold">Wishlist</a>
+    <a [routerLink]='"/"' class="text-black text-sm font-semibold">Shoplist</a>
+    <a [routerLink]='"/"' class="text-black text-sm font-semibold">Wishlist</a>
     <input
       type="text"
       placeholder="Search..."
       class="w-11/12 border border-gray-300 rounded-sm py-2 px-4 text-sm focus:outline-none focus:border-gray-950"
     >
-    <app-navbar-user-section></app-navbar-user-section>
+    <ng-container *ngIf="isLoggedIn === true; else log_in_anchor">
+      <app-navbar-user-section></app-navbar-user-section>
+    </ng-container>
+    <ng-template #log_in_anchor>
+      <a [routerLink]='"/login"' class="text-black text-sm font-semibold">Log-in</a>
+    </ng-template>
   </div>
 </nav>

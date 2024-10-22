@@ -1,29 +1,28 @@
 <div class="flex items-center space-x-4">
   <!-- Username -->
-  <a href="/" class="text-black text-sm sm:text-base font-semibold underline">
+  <!-- Show cart icon for 'Shopper' -->
+  <ng-container *ngIf="user.role === 'Shooper'">
+    <a href="#" class="text-black text-sm sm:text-base font-semibold underline">
+      <img src="/icons/cart.svg" alt="cart icon" class="w-6 h-6 inline-block">
+    </a>
+  </ng-container>
 
-    
-
-    <!-- Show cart icon for 'Shopper' -->
-    <ng-container *ngIf="user.role === 'Shooper'">
-      <img src="/icons/cart.svg" alt="cart icon" class="w-6 h-6">
-    </ng-container>
-  
-    <!-- Show text for 'Employee' -->
-    <ng-container *ngIf="user.role === 'Employee'">
+  <!-- Show link for 'Employee' -->
+  <ng-container *ngIf="user.role === 'Employee'">
+    <a [routerLink]='"/home"' class="text-black text-sm sm:text-base font-semibold underline">
       Employee Portal
-    </ng-container>
-  
-    <!-- Show text for 'Admin' -->
-    <ng-container *ngIf="user.role === 'Admin'">
+    </a>
+  </ng-container>
+
+  <!-- Show link for 'Admin' -->
+  <ng-container *ngIf="user.role === 'Admin'">
+    <a [routerLink]='"/home"' class="text-black text-sm sm:text-base font-semibold underline">
       Admin Portal
-    </ng-container>
-  
+    </a>
+  </ng-container>
+  <a [routerLink]='"/logout"' class="text-sm sm:text-base text-red-500 hover:text-red-700">
+    Logout
   </a>
-
-  <!-- Logout -->
-  <button (click)="logout()" class="text-sm sm:text-base text-red-500 hover:text-red-700">Logout</button>
-
   <div class="flex flex-col items-center">
     <!-- User Icon -->
     <div>
@@ -31,6 +30,6 @@
     </div>
   
     <!-- Username -->
-    <span class="text-sm sm:text-base font-semibold">{{ user.username }}</span>
+    <span class="text-sm sm:text-base font-semibold">{{ user.userName }}</span>
   </div>
 </div>

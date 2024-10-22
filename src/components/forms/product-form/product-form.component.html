@@ -18,11 +18,11 @@
       [formGroup]="productForm"
       [control]="this.productForm.get('price')"
     />
-    <app-text-field
+    <app-select-field
       [name]="'category'"
-      [label]="'Category'"
-      [placeholder]="'Enter the product category'"
+      [label]="'category'"
       [formGroup]="productForm"
+      [options]="this.categories"
       [control]="this.productForm.get('category')"
     />
     <app-text-field

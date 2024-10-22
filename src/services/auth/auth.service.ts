@@ -59,7 +59,6 @@ export class AuthService {
         { headers: { Authorization: `Bearer ${this.userData.value?.token}` } }
       );
       this.userData.next(response.data);
-      console.log(response);
       localStorage.removeItem('userData');
       this.userData.next(null);
       return response;

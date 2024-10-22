@@ -1,0 +1,14 @@
+<app-form-wrapper [formGroup]="couponForm" (onSubmit)="handleActionButton($event)">
+    <div class="mt-8 flex flex-col w-full gap-y-8">
+        <app-text-field
+        [name]="'coupon'"
+        [label]="'Coupon'"
+        [placeholder]="'Enter the coupon code'"
+        [formGroup]="couponForm"
+        [control]="this.couponForm.get('coupon')"
+      />
+      <app-primary-button
+      [value]="'Add'"
+    />
+    </div>
+</app-form-wrapper>

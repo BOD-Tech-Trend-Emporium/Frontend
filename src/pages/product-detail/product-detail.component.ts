@@ -5,11 +5,12 @@ import { ProductService } from '@services/product/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { BasicImagenComponent } from "../../components/basic-imagen/basic-imagen.component";
 import { ProductdetailDescriptionComponent } from '@components/productdetail-description/productdetail-description.component';
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [BasicImagenComponent, ProductdetailDescriptionComponent],
+  imports: [BasicImagenComponent, ProductdetailDescriptionComponent, FooterComponent],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })

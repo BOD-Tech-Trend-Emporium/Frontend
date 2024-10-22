@@ -17,19 +17,21 @@ export class CounterComponent {
   disableDecrement: boolean = true;
 
   increase(){
-    if(this.maxValue){
-      this.disableIncrement = this.currentValue +1 > this.maxValue ? true : false
-      this.currentValue = this.disableIncrement ? this.currentValue : this.currentValue+1;
+    if (this.maxValue !== undefined && this.currentValue < this.maxValue) {
+      this.currentValue++;
+      this.disableIncrement = this.currentValue >= this.maxValue;
       this.disableDecrement = false;
       this.valueEmitter.emit(this.currentValue);
     }
 
   }
   decrease(){
-    this.disableDecrement = this.currentValue -1 < this.minValue ? true : false
-    this.currentValue = this.disableDecrement ? this.currentValue : this.currentValue-1;
-    this.disableIncrement = false;
-    this.valueEmitter.emit(this.currentValue);
+    if (this.currentValue > this.minValue) {
+      this.currentValue--;
+      this.disableDecrement = this.currentValue <= this.minValue;
+      this.disableIncrement = false;
+      this.valueEmitter.emit(this.currentValue);
+    }
   }
 
 }

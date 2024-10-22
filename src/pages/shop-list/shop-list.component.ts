@@ -1,5 +1,5 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SelectFieldComponent } from '../../components/forms/form-fields/select-field/select-field.component';
 import { NumberFieldComponent } from '../../components/forms/form-fields/number-field/number-field.component';
@@ -33,11 +33,13 @@ import { ActionButtonComponent } from '../../components/buttons/action-button/ac
   styleUrl: './shop-list.component.css',
 })
 export class ShopListComponent {
-  isLoading = true;
+  currentPage = 1;
+  isLoading = false;
+  isLoadingNewContent = false;
   categoryService: CategoryService = inject(CategoryService);
   productService: ProductService = inject(ProductService);
   toastr: ToastrService = inject(ToastrService);
-  categories: any = [
+  categories = [
     {
       value: '',
       name: 'Select a category',
@@ -52,7 +54,7 @@ export class ShopListComponent {
 
   ngOnInit() {
     this.getCategories();
-    this.getProductsList();
+    this.searchProducts();
   }
 
   transformCategories = (categories: CategoryEntity[]) => {
@@ -74,29 +76,25 @@ export class ShopListComponent {
     }
   }
 
-  async getProductsList() {
+  async searchProducts() {
+    const query = this.getQueryFromForm(this.filterForm.value);
+    console.log(query);
+    this.isLoading = true;
     const products: ProductEntity[] | AxiosError =
-      await this.productService.getAll();
+      await this.productService.searchProducts(query, this.currentPage);
     if ('message' in products) {
       this.toastr.error(products.message, 'Error');
     } else {
-      this.productsList = products;
+      this.productsList.push(...products);
     }
     this.isLoading = false;
   }
 
-  async searchProducts() {
-    const query = this.getQueryFromForm(this.filterForm.value);
-    console.log(this.filterForm.value);
-    this.isLoading = true;
-    const products: ProductEntity[] | AxiosError =
-      await this.productService.searchProducts(query);
-    if ('message' in products) {
-      this.toastr.error(products.message, 'Error');
-    } else {
-      this.productsList = products;
-    }
-    this.isLoading = false;
+  async handleSearchMoreProducts() {
+    this.isLoadingNewContent = true;
+    this.currentPage += 1;
+    await this.searchProducts();
+    this.isLoadingNewContent = false;
   }
 
   getQueryFromForm(
@@ -119,16 +117,21 @@ export class ShopListComponent {
     return query;
   }
 
-  clearFilters() {
+  async clearFilters() {
+    console.log('a');
     this.filterForm.setValue({
       category: '',
       minPrice: '',
       maxPrice: '',
     });
-    this.getProductsList();
+    this.currentPage = 1;
+    await this.searchProducts();
+    this.productsList = [];
   }
 
-  handleFilter() {
-    this.searchProducts();
+  async handleFilter() {
+    this.currentPage = 1;
+    this.productsList = [];
+    await this.searchProducts();
   }
 }

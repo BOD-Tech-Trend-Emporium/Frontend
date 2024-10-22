@@ -39,11 +39,13 @@ export class ProductService {
     }
   }
 
-  async searchProducts(query: string): Promise<ProductEntity[] | AxiosError> {
-    console.log(query);
+  async searchProducts(
+    query: string,
+    page: number
+  ): Promise<ProductEntity[] | AxiosError> {
     try {
       const response = await axios.get(
-        `${this.productsStoreEndpoint}?${query}&pageSize=20`
+        `${this.productsStoreEndpoint}?${query}&pageSize=6&page=${page}`
       );
       return response.data;
     } catch (error) {

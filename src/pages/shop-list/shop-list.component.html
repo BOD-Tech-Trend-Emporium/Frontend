@@ -42,28 +42,40 @@
       <app-primary-button value="Filter" [disabled]="filterForm.invalid" />
     </div>
   </form>
-  <div
-    class="w-[100%] lg:w-[75%] flex justify-center items-center flex-wrap gap-12 mt-16"
-  >
-    @if (isLoading) {
-    <app-loader />
-    } @else{ @if(productsList.length === 0){
-    <h3 class="text-2xl">No matching products</h3>
-    } @else { @for (product of productsList; track $index) {
-
-    <div>
-      <div
-        class="h-20 w-20 mb-6 smallest:w-28 smallest:h-24 sm:w-40 sm:h-36 md:w-56 md:h-44 lg:w-80 lg:h-72"
-      >
-        <app-basic-imagen
-          [routerLink]="['/product-detail', product.id]"
-          [src]="product.image"
-          [figcaption]="product.title"
-          [alt]="product.description"
-        ></app-basic-imagen>
+  <div class="w-[100%] lg:w-[75%] flex flex-col justify-center items-center">
+    <div class="flex justify-center items-center flex-wrap gap-12 mt-16">
+      @if (isLoading) {
+      <div class="w-full h-[55vh] flex justify-center items-center mb-20">
+        <app-loader />
       </div>
-      <p class="text-center">{{ product.price | currency }}</p>
+      } @else{ @if(productsList.length === 0){
+      <h3 class="text-2xl">No matching products</h3>
+      } @else { @for (product of productsList; track $index) {
+
+      <div>
+        <div
+          class="h-20 w-20 mb-6 smallest:w-28 smallest:h-24 sm:w-40 sm:h-36 md:w-56 md:h-44 lg:w-80 lg:h-72"
+        >
+          <app-basic-imagen
+            [routerLink]="['/product-detail', product.id]"
+            [src]="product.image"
+            [figcaption]="product.title"
+            [alt]="product.description"
+          ></app-basic-imagen>
+        </div>
+        <p class="text-center">{{ product.price | currency }}</p>
+      </div>
+      } }}
     </div>
-    } }}
+    <div class="my-24 w-[180px] flex justify-center items-center flex-col">
+      @if(isLoadingNewContent){
+      <app-loader />
+      } @else {
+      <app-action-button
+        value="Load more products"
+        (clicked)="handleSearchMoreProducts()"
+      />
+      }
+    </div>
   </div>
 </div>

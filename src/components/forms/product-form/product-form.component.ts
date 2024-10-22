@@ -13,6 +13,9 @@ import { FormWrapperComponent } from '../form-wrapper/form-wrapper.component';
 import { ProductService } from '@services/product/product.service';
 import { AxiosError } from 'axios';
 import { ToastrService } from 'ngx-toastr';
+import { SelectFieldComponent } from '../form-fields/select-field/select-field.component';
+import { CategoryService } from '@services/category/category.service';
+import { CategoryEntity } from '@entities/Category.entity';
 
 @Component({
   selector: 'app-product-form',
@@ -23,6 +26,7 @@ import { ToastrService } from 'ngx-toastr';
     TextFieldComponent,
     PrimaryButtonComponent,
     FormWrapperComponent,
+    SelectFieldComponent,
   ],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.css',
@@ -33,6 +37,14 @@ export class ProductFormComponent {
 
   productService: ProductService = inject(ProductService);
   toastr: ToastrService = inject(ToastrService);
+  categoryService: CategoryService = inject(CategoryService);
+
+  categories = [
+    {
+      value: 'value',
+      name: 'Select a value',
+    },
+  ];
 
   productForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -47,11 +59,39 @@ export class ProductFormComponent {
     this.handleProductDataOnChange();
   }
 
+  ngOnInit() {
+    this.getCategories();
+  }
+
+  transformCategories = (categories: CategoryEntity[]) => {
+    return categories.map((i: CategoryEntity) => {
+      return {
+        value: i.id.toString(),
+        name: i.name,
+      };
+    });
+  };
+
+  async getCategories() {
+    const response = await this.categoryService.getAll();
+    if ('message' in response) {
+      this.toastr.error(response.message, 'Error');
+    } else {
+      const transformedCategories = this.transformCategories(response);
+      this.categories = transformedCategories;
+    }
+  }
+
+  getCategoryFromName(name: string) {
+    return this.categories.find((i) => i.name === name)?.value;
+  }
+
   handleProductDataOnChange() {
+    console.log(this.productData);
     this.productForm.setValue({
       title: this.productData?.name || '',
       price: this.productData?.price || '',
-      category: this.productData?.category || '',
+      category: this.getCategoryFromName(this.productData?.category) || '',
       description: this.productData?.description || '',
       image: this.productData?.image || '',
       inventory: this.productData?.inventory || '',

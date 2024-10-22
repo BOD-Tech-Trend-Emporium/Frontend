@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthBannerComponent } from './auth-banner.component';
+import { NumberFieldComponent } from './number-field.component';
 
-describe('LoginBannerComponent', () => {
-  let component: AuthBannerComponent;
-  let fixture: ComponentFixture<AuthBannerComponent>;
+describe('TextFieldComponent', () => {
+  let component: NumberFieldComponent;
+  let fixture: ComponentFixture<NumberFieldComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AuthBannerComponent],
+      imports: [NumberFieldComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AuthBannerComponent);
+    fixture = TestBed.createComponent(NumberFieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

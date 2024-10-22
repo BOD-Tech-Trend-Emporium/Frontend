@@ -11,6 +11,7 @@ import { LogoutComponent } from '@pages/logout/logout.component';
 import { ProductDetailComponent } from '@pages/product-detail/product-detail.component';
 import { ProductsListComponent } from '@pages/products-list/products-list.component';
 import { RecoverPasswordComponent } from '@pages/recover-password/recover-password.component';
+import { ShoppingCartComponent } from '@pages/shopping-cart/shopping-cart.component';
 import { SignupComponent } from '@pages/signup/signup.component';
 import { UsersListComponent } from '@pages/users-list/users-list.component';
 import { AuthGuard } from 'src/guards/auth.guard';
@@ -53,5 +54,6 @@ export const routes: Routes = [
   { path: 'product-detail/:id', component: ProductDetailComponent },
   { path: 'create-category', component: CreateCategoryComponent, canActivate: [AuthGuard], data: {validRoles: ['Admin', 'Employee']}},
   { path: 'create-product', component: CreateProductComponent, canActivate: [AuthGuard], data: {validRoles: ['Admin', 'Employee']}},
-  { path: 'create-employee', component: CreateEmployeeComponent, canActivate: [AuthGuard], data: {validRoles: ['Admin']}}
+  { path: 'create-employee', component: CreateEmployeeComponent, canActivate: [AuthGuard], data: {validRoles: ['Admin']}},
+  { path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuard], data: {validRoles: ['Shopper']}}
 ];

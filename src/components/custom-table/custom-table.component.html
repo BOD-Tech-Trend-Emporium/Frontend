@@ -1,0 +1,42 @@
+<table>
+  <thead>
+    <tr>
+      @for (row of rows; track $index) {
+      <th>{{ row }}</th>
+      } @if (delete || edit) {
+      <th>OPTIONS</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of items; track item.id) {
+    <tr>
+      @for (cell of getColumnsValues(item); track $index) {
+      <td>{{ cell }}</td>
+      } @if (delete || edit) {
+      <td class="w-[200px]">
+        @if (edit) {
+        <div class="mb-2">
+          <app-action-button
+            value="Edit"
+            [type]="'Edit'"
+            [data]="item"
+            (clicked)="handleOptionClick($event, 'edit')"
+          />
+        </div>
+        } @if (delete) {
+        <div class="mt-2">
+          <app-action-button
+            value="Delete"
+            [type]="'delete'"
+            [data]="item"
+            (clicked)="handleOptionClick($event, 'delete')"
+          />
+        </div>
+        }
+      </td>
+      }
+    </tr>
+    }
+  </tbody>
+</table>

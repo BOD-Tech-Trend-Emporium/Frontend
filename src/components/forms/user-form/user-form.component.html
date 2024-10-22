@@ -1,0 +1,54 @@
+<app-form-wrapper
+  [formGroup]="userForm"
+  (onSubmit)="handleActionButton($event)"
+>
+  <h3 class="font-bold mb-3 text-xl">Employee</h3>
+  <div class="mt-8 flex flex-col w-full gap-y-8">
+    <app-email-field
+      [name]="'email'"
+      [label]="'Email'"
+      [placeholder]="'Enter the user email'"
+      [formGroup]="userForm"
+      [control]="this.userForm.get('email')"
+    />
+    <app-text-field
+      [name]="'name'"
+      [label]="'Name'"
+      [placeholder]="'Enter the user name'"
+      [formGroup]="userForm"
+      [control]="this.userForm.get('name')"
+    />
+    <app-text-field
+      [name]="'userName'"
+      [label]="'UserName'"
+      [placeholder]="'Enter the userName'"
+      [formGroup]="userForm"
+      [control]="this.userForm.get('userName')"
+    />
+    <app-text-field
+      [name]="'password'"
+      [label]="'Password'"
+      [placeholder]="'Enter the user password'"
+      [formGroup]="userForm"
+      [control]="this.userForm.get('password')"
+    />
+    <app-select-field
+      [name]="'securityQuestion'"
+      [label]="'Select your question'"
+      [formGroup]="userForm"
+      [options]="this.options"
+      [control]="this.userForm.get('securityQuestion')"
+    />
+    <app-text-field
+      [name]="'answer'"
+      [label]="'Your answer'"
+      [placeholder]="'Answer to your security question'"
+      [formGroup]="userForm"
+      [control]="this.userForm.get('answer')"
+    />
+    <app-primary-button
+      [value]="this.userData ? 'Save' : 'Add'"
+      [disabled]="this.userForm.invalid"
+    />
+  </div>
+</app-form-wrapper>

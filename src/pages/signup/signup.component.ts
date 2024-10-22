@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthComponent } from '../../layouts/auth/auth.component';
-import { SignupFormComponent } from '../../components/signup-form/signup-form.component';
+import { SignupFormComponent } from '../../components/forms/signup-form/signup-form.component';
 
 @Component({
   selector: 'app-signup',

@@ -1,0 +1,23 @@
+<div class="w-[35rem]">
+    <h1 class="line-clamp-1 font-bold text-3xl w-[25rem]">{{productEntity?.title}}</h1>
+    <p class="text-sm">{{productEntity?.price | currency}}</p>
+    <p class="mt-4 break-all w-[25rem] line-clamp-4">{{productEntity?.description}}</p>
+    <p class="mt-2">by Romeo Santos</p>
+    <h2 class="mt-4 opacity-35 mb-2">Size</h2>
+    
+    <app-white-button value="S" [disable]="true" class="mr-1 "></app-white-button>
+    <app-white-button value="M" [disable]="true" class="mr-1"></app-white-button>
+    <app-white-button value="L" [disable]="true"></app-white-button>
+
+    <div class="flex justify-between">
+        <div>
+            <div class="w-72">
+                <app-black-button-function [value]="'Add to Cart -$'+getCost()" (buttonFunction)="addToCart()"></app-black-button-function>
+            </div>
+            <p class="opacity-25 text-sm mt-2">Free standard shipping</p>
+        </div>
+        
+        <app-counter (valueEmitter)="getCurrentValue($event)" [maxValue]="productEntity?.inventory?.available" class="mr-16"></app-counter>    
+    </div>
+
+</div>

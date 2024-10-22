@@ -1,0 +1,44 @@
+<app-form-wrapper [formGroup]="loginForm" (onSubmit)="handleLogin($event)">
+  <span class="text-lg font-light">Welcome !</span>
+  <h3 class="text-2xl font-medium mt-5">Sign in to</h3>
+  <span class="text-base mt-2 font-normal"
+    >please enter your credentials to log in.</span
+  >
+  <div class="mt-8 flex flex-col w-full gap-y-8">
+    <app-email-field
+      [name]="'email'"
+      [label]="'Email'"
+      [placeholder]="'Enter your email'"
+      [formGroup]="loginForm"
+      [control]="this.loginForm.get('email')"
+    />
+    <app-password-field
+      [name]="'password'"
+      [label]="'Password'"
+      [placeholder]="'Enter your password'"
+      [formGroup]="loginForm"
+      [control]="this.loginForm.get('password')"
+    />
+    <div class="mt-5 flex justify-between">
+      <app-checkbox-field
+        [name]="'save'"
+        [label]="'Remember me'"
+        [formGroup]="loginForm"
+      />
+      <a
+        routerLink="/recover-password"
+        class="text-base font-light hover:underline text-gray-600 decoration-gray-600"
+        >Forgot password?</a
+      >
+    </div>
+    @if (isLoading) {
+    <app-loader-button />
+    } @else {
+    <app-primary-button value="Login" [disabled]="this.loginForm.invalid" />
+    }
+    <span class="mt-14 mx-auto text-gray-400 text-base font-semibold">
+      Don'y have an Account?
+      <a routerLink="/signup" class="text-black text-base"> Register</a></span
+    >
+  </div>
+</app-form-wrapper>

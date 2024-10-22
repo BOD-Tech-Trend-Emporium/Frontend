@@ -35,11 +35,6 @@ export const passwordsMatchValidator = (control: AbstractControl) => {
   if (!password || !repeatPassword) {
     return null;
   }
-  console.log(repeatPassword);
-
-  if (!repeatPassword.touched) {
-    return null;
-  }
 
   return password.value === repeatPassword.value
     ? null

@@ -1,19 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-
+import { NavbarUserSectionComponent } from '@components/navbar-user-section/navbar-user-section.component';
+import { User } from '@entities/User.entity';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [
+    NavbarUserSectionComponent,
+    CommonModule
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  isLoggedIn: boolean = true;  // You would fetch this from an authentication service
-  isShopper: boolean = true;   // Define user role based on user data
-  isEmployee: boolean = false; // Define user role based on user data
-  username: string = 'JohnDoe'; // Fetch username dynamically
+  isLoggedIn: boolean = false;  
+  isDropdownOpen = false; 
 
-  logout() {
-    // Handle logout logic here
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen; // Toggle the dropdown
+    console.log(this.isDropdownOpen)
   }
+
 }

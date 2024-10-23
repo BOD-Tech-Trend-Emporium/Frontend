@@ -3,7 +3,12 @@
 ## Project Overview
 
 Tech-Trend-Emporium is an e-commerce platform designed to manage the store’s inventory, customer orders, and payment processing.
+## Video Demo
 
+Here you can find two videos showing the functionalities of our project:
+
+- https://www.youtube.com/watch?v=FsCBG_UQ6w4
+- https://www.youtube.com/watch?v=i2bCXrSX78k
 ## Branch Strategy
 
 This project follows the Git-flow strategy with the following key branches:
